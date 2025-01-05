@@ -1,0 +1,6 @@
+# Node
+/node_modules
+/.env
+/package-lock.json
+/dump.rdb
+/uploads
