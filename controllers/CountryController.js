@@ -54,7 +54,7 @@ router.post('/city/add',  async (req, res, next) => {
 router.get('/all', async (req, res, next) => {
     try {
         const result = await CountryService.getAllCountries();
-        return res.status(result.status).json(result);
+        return res.json(result);
     } catch (error) {
         logger.error('Error in CountryController - Get All Countries:', {
             message: error.message,

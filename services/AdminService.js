@@ -4,9 +4,10 @@ const { createToken, verifyToken } = require('../modules/helper');
 const { httpsCodes } = require('../modules/constants');
 const UserService = require('../services/UserService')
 const bcrypt = require('bcrypt');
+const logger = require('../modules/logger');
 const ForgotPassword = require('./ForgotPassword');
-const Questionnaire = require('../models/Questionare.model');
-const UserAnswer = require('../models/UserAnswers');
+const RoleService = require('../services/RoleService');
+
 'use-strict';
 
 class AdminService {
@@ -14,91 +15,96 @@ class AdminService {
     //get all users
     static async getAllUsers() {
         try {
-            const users = await UserService.getAllUsers();
-            if (!users || users.length === 0) {
-                return { status: httpsCodes.NOT_FOUND, message: language.NO_USERS_FOUND };
+            let result = "";
+
+            // Fetch all roles
+            let rolesResponse = await RoleService.getAllRoles();
+
+            // Check if roles were fetched successfully
+            if (rolesResponse.status !== 200) {
+                throw new Error('Failed to fetch roles');
             }
 
-            // Return success response with users
-            return { status: httpsCodes.SUCCESS_CODE, message: language.USERS_FOUND, result: users };
-        } catch (error) {
-            console.error("Error in getAllUsers:", error); // Log the error for debugging
-            return { status: httpsCodes.INTERNAL_SERVER_ERROR, message: language.INTERNAL_SERVER_ERROR };
-        }
-    }
+            let vendorRole = rolesResponse.data.find(role => role.name === 'Vendor');
 
-    static async getUserDetailById(reqObj) {
-        try {
-          
-            const users = await UserService.getUserDetailsById(reqObj.userId);
-            console.log(users);
-            if (!users || users.length === 0) {
-                return { status: httpsCodes.NOT_FOUND, message: language.NO_USERS_FOUND };
+            if (!vendorRole) {
+                throw new Error('Vendor role not found');
             }
-
-            // Return success response with users
-            return { status: httpsCodes.SUCCESS_CODE, message: language.USERS_FOUND, result: users };
-        } catch (error) {
-            console.error("Error in getAllUsers:", error); // Log the error for debugging
-            return { status: httpsCodes.INTERNAL_SERVER_ERROR, message: language.INTERNAL_SERVER_ERROR };
-        }
-    }
-
-
-    static async getSingleUserAllDetailById(reqObj) {
-        try {
-          
-            const users = await UserService.getAllUserDetailsById(reqObj.userId);
-            console.log(users);
-            if (!users || users.length === 0) {
-                return { status: httpsCodes.NOT_FOUND, message: language.NO_USERS_FOUND };
-            }
-
-            // Return success response with users
-            return { status: httpsCodes.SUCCESS_CODE, message: language.USERS_FOUND, result: users };
-        } catch (error) {
-            console.error("Error in getAllUsers:", error); // Log the error for debugging
-            return { status: httpsCodes.INTERNAL_SERVER_ERROR, message: language.INTERNAL_SERVER_ERROR };
-        }
-    }
-    static async getDashboardSummary() {
-        try {
-            // Get total users
-            const totalUsers = await User.countDocuments({ userType: 'user' });
-
-            // Get total questions
-            const totalQuestions = await Questionnaire.countDocuments();
-
-            // Get total users who answered at least one question
-            const usersWhoAnswered = await UserAnswer.distinct('userId');
-            const totalUsersWhoAnswered = usersWhoAnswered.length;
-
-            // Get total answers submitted (count of UserAnswer documents)
-            const totalAnswersSubmitted = await UserAnswer.countDocuments();
-
-            // Construct response
-            const result = {
-                totalUsers,
-                totalQuestions,
-                totalUsersWhoAnswered,
-                totalAnswersSubmitted
-            };
+            let vendorRoleId = vendorRole._id;
+            const users = await User.find({ RoleId: vendorRoleId }).populate('RoleId').exec();
 
             return {
-                status: httpsCodes.SUCCESS_CODE,
-                message: language.RECORDS_FOUND,
-                result
+                status: 200,
+                message: 'Users fetched successfully',
+                result: users
             };
         } catch (error) {
-            console.error('Error fetching dashboard summary:', error);
-            return {
-                status: httpsCodes.INTERNAL_SERVER_ERROR,
-                message: language.INTERNAL_SERVER_ERROR
-            };
+            logger.error('Error in AdminService - Get All Users:', {
+                message: error.message,
+                stack: error.stack
+            });
+            throw error;
         }
     }
-    
 
+    static async addVendor(reqObj) {
+        try {
+            const { username, email, password, gender, phonenumber, Address, createdBy } = reqObj;
+
+            // Validate required fields
+            if (!username || !email || !password || !gender || !Address) {
+                return { status: 400, message: 'All fields are required.' };
+            }
+
+            // Fetch all roles and find the 'Vendor' role
+            const rolesResponse = await RoleService.getAllRoles();
+            if (rolesResponse.status !== 200) {
+                throw new Error('Failed to fetch roles.');
+            }
+
+            const vendorRole = rolesResponse.data.find(role => role.name === 'Vendor');
+            if (!vendorRole) {
+                throw new Error('Vendor role not found.');
+            }
+
+            // Check if the email already exists
+            const existingUser = await User.findOne({ email });
+            if (existingUser) {
+                return { status: 409, message: 'User with this email already exists.' };
+            }
+
+            // Hash the password
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // Create the Vendor user
+            const newVendor = new User({
+                username,
+                email,
+                password: hashedPassword,
+                gender,
+                phonenumber,
+                Address,
+                RoleId: vendorRole._id,
+                createdBy : createdBy // Link to the SuperAdmin who created the Vendor
+            });
+
+            // Save the new vendor
+            const savedVendor = await newVendor.save();
+
+            return { 
+                status: 201, 
+                message: 'Vendor successfully created.', 
+                result: savedVendor 
+            };
+        } catch (error) {
+            logger.error('Error in AdminService - Add Vendor:', {
+                message: error.message,
+                stack: error.stack,
+                data: reqObj
+            });
+            throw error;
+        }
+    }
 
 }
 

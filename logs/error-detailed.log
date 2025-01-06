@@ -1,0 +1,239 @@
+2025-01-06 04:56:34 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/QuestionareController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:6:25)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/QuestionareController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 04:56:50 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/QuestionareController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:6:25)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/QuestionareController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 04:57:00 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/QuestionareController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:6:25)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/QuestionareController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:05:32 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/QuestionareController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:6:25)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/QuestionareController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:06:21 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/QuestionareController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:6:25)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/QuestionareController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:18:27 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../models/User'
+Require stack:
+- C:\Users\husna\focus-backend\services\VendorService.js
+- C:\Users\husna\focus-backend\controllers\VendorController.js
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\focus-backend\services\VendorService.js:3:14)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../models/User'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\services\\VendorService.js\n- C:\\Users\\husna\\focus-backend\\controllers\\VendorController.js\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:18:35 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../models/User'
+Require stack:
+- C:\Users\husna\focus-backend\services\VendorService.js
+- C:\Users\husna\focus-backend\controllers\VendorController.js
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\focus-backend\services\VendorService.js:3:14)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../models/User'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\services\\VendorService.js\n- C:\\Users\\husna\\focus-backend\\controllers\\VendorController.js\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:19:07 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../utils/verifyToken'
+Require stack:
+- C:\Users\husna\focus-backend\controllers\VendorController.js
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\focus-backend\controllers\VendorController.js:5:21)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../utils/verifyToken'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\controllers\\VendorController.js\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:22:33 [ERROR]: Error in VendorController - /onboard/client: verifyToken is not a function
+Stack Trace: TypeError: verifyToken is not a function
+    at C:\Users\husna\focus-backend\controllers\VendorController.js:17:37
+    at Layer.handle [as handle_request] (C:\Users\husna\focus-backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\focus-backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\focus-backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\focus-backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\focus-backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\focus-backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\focus-backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\focus-backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\husna\focus-backend\node_modules\express\lib\router\index.js:47:12)
+Metadata: {"headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c0BnbWFpbC5jb20iLCJ1c2VyIjoiNjc3YjBkMTU4YTkxZDJmYTA1YmU3YTNlIiwiZ2VuZGVyIjoiZmVtYWxlIiwidXNlcm5hbWUiOiJodXNuYWluIiwicGhvbmVudW1iZXIiOiIwMzM5NDAxNjI0NiIsInVzZXJUeXBlIjoiVmVuZG9yIiwiaWF0IjoxNzM2MTIyOTI2LCJleHAiOjE3Njc2ODA1MjZ9.Pk4S6_6vLhf0PcseeJ8UyqcGD_a2Z0WjyGxMqDVW0Os","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"ec9a759e-d4fe-401d-88ca-dec1618cfcc1","host":"localhost:3250","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"350"},"body":{"username":"JohnDoe","email":"johndoe@example.com","password":"securePassword123","gender":"male","phonenumber":"123456789","Address":"123 Client Street","countryId":"64c7b0f5a1f12345abcd6789","VisaTypeId":"64c7b0e5a1f12345abcd6790","InitialPayment":1000,"FinalPayment":5000},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-06 05:23:21 [ERROR]: Unauthorized access attempt in VendorController - /onboard/client: Unauthorized access
+Metadata: {"role":"Unknown","userId":"Unknown","email":"hus@gmail.com","ipAddress":"::1","headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c0BnbWFpbC5jb20iLCJ1c2VyIjoiNjc3YjBkMTU4YTkxZDJmYTA1YmU3YTNlIiwiZ2VuZGVyIjoiZmVtYWxlIiwidXNlcm5hbWUiOiJodXNuYWluIiwicGhvbmVudW1iZXIiOiIwMzM5NDAxNjI0NiIsInVzZXJUeXBlIjoiVmVuZG9yIiwiaWF0IjoxNzM2MTIyOTI2LCJleHAiOjE3Njc2ODA1MjZ9.Pk4S6_6vLhf0PcseeJ8UyqcGD_a2Z0WjyGxMqDVW0Os","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"f407f475-9407-47c8-a297-12a86d82bfc8","host":"localhost:3250","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"350"}}
+---------------------------------
+
+2025-01-06 05:26:06 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/VisaController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:7:22)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/VisaController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:26:10 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../controllers/VisaController'
+Require stack:
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\focus-backend\config\Routes.js:7:22)
+    at C:\Users\husna\focus-backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Cannot find module '../controllers/VisaController'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:30:09 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../services/VisaTypeService'
+Require stack:
+- C:\Users\husna\focus-backend\controllers\VisaController.js
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\focus-backend\controllers\VisaController.js:3:25)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../services/VisaTypeService'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\controllers\\VisaController.js\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:30:35 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../services/VisaTypeService'
+Require stack:
+- C:\Users\husna\focus-backend\controllers\VisaController.js
+- C:\Users\husna\focus-backend\config\Routes.js
+- C:\Users\husna\focus-backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\focus-backend\controllers\VisaController.js:3:25)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../services/VisaTypeService'\nRequire stack:\n- C:\\Users\\husna\\focus-backend\\controllers\\VisaController.js\n- C:\\Users\\husna\\focus-backend\\config\\Routes.js\n- C:\\Users\\husna\\focus-backend\\app.js"}
+---------------------------------
+
+2025-01-06 05:33:35 [ERROR]: Error in VisaTypeService - Add VisaType: VisaType validation failed: name: Path `name` (`H1`) is shorter than the minimum allowed length (3).
+Stack Trace: ValidationError: VisaType validation failed: name: Path `name` (`H1`) is shorter than the minimum allowed length (3).
+    at Document.invalidate (C:\Users\husna\focus-backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\focus-backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\focus-backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+Metadata: {"data":{"name":"H1"}}
+---------------------------------
+
+2025-01-06 05:33:35 [ERROR]: Error in VisaTypeController - Add VisaType: VisaType validation failed: name: Path `name` (`H1`) is shorter than the minimum allowed length (3).
+Stack Trace: ValidationError: VisaType validation failed: name: Path `name` (`H1`) is shorter than the minimum allowed length (3).
+    at Document.invalidate (C:\Users\husna\focus-backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\focus-backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\focus-backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+Metadata: {"body":{"name":"H1"}}
+---------------------------------
+
