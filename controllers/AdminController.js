@@ -1,48 +1,80 @@
 const express = require('express');
 const router = express.Router();
 const AdminService = require('../services/AdminService');
+const UserService = require('../services/UserService');
+const { verifyToken } = require('../modules/helper');
+const logger = require('../modules/logger'); // Import logger
 
 // Route to get all users
-router.get('/all/users', async (req, res) => {
+router.get('/all/users', async (req, res, next) => {
     try {
-        let tokken = req.headers['authorization'].split(' ')[1];
-        const response = await AdminService.getAllUsers();
-        res.status(response.status).json({ message: response.message, result: response.result });
+        let token = req.headers['authorization']?.split(' ')[1];
+
+        const verifiedToken = await verifyToken(token);
+
+        if (verifiedToken?.data?.userType === 'SuperAdmin') {
+            const response = await AdminService.getAllUsers({ token });
+            res.json(response);
+        } else {
+            logger.error('Unauthorized access attempt in AdminController - /all/users:', {
+                message: "Unauthorized access",
+                userType: verifiedToken?.data?.userType || 'Unknown',
+                userId: verifiedToken?.data?.userId || 'Unknown',
+                email: verifiedToken?.data?.email || 'Unknown',
+                ipAddress: req.ip || req.connection.remoteAddress,
+                headers: req.headers
+            });
+            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can access this resource.' });
+        }
     } catch (error) {
-        console.error("Error in /admin/all-users route:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
-router.get('/single/user:id', async (req, res) => {
-    try {
-        let userId = req.params.id;
-        const response = await AdminService.getUserDetailById({userId});
-        res.status(response.status).json({ message: response.message, result: response.result });
-    } catch (error) {
-        console.error("Error in /admin/all-users route:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        logger.error('Error in AdminController - /all/users:', {
+            message: error.message,
+            stack: error.stack,
+            headers: req.headers,
+            body: req.body,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
     }
 });
 
 
-router.get('/single/user/all/Details:id', async (req, res) => {
+router.post('/give/access', async (req, res, next) => {
     try {
-        let userId = req.params.id;
-        const response = await AdminService.getSingleUserAllDetailById({userId});
-        res.status(response.status).json({ message: response.message, result: response.result });
+        // Extract the token from the Authorization header
+        let token = req.headers['authorization']?.split(' ')[1];
+
+        // Verify the token
+        const verifiedToken = await verifyToken(token);
+
+        // Check if the user is SuperAdmin
+        if (verifiedToken?.data?.userType === 'SuperAdmin') {
+            const response = await AdminService.addVendor({ 
+                createdBy: verifiedToken.data.user, 
+                ...req.body 
+            });
+            res.json(response);
+        } else {
+            logger.error('Unauthorized access attempt in AdminController - /give/access:', {
+                message: "Unauthorized access",
+                role: verifiedToken?.data?.role || 'Unknown',
+                userId: verifiedToken?.data?.userId || 'Unknown',
+                email: verifiedToken?.data?.email || 'Unknown',
+                ipAddress: req.ip || req.connection.remoteAddress,
+                headers: req.headers
+            });
+            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can access this resource.' });
+        }
     } catch (error) {
-        console.error("Error in /admin/all-users route:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+        logger.error('Error in AdminController - /give/access:', {
+            message: error.message,
+            stack: error.stack,
+            headers: req.headers,
+            body: req.body,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
     }
 });
 
-router.get('/dashboard/summary', async (req, res) => {
-    try {
-        const response = await AdminService.getDashboardSummary();
-        res.status(response.status).json({ message: response.message, result: response.result });
-    } catch (error) {
-        console.error("Error in /admin/all-users route:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
 module.exports = router;

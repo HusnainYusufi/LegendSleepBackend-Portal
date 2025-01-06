@@ -9,7 +9,7 @@ try {
             required: true,
             unique: true,
             trim: true,
-            minlength: 3,
+            minlength: 1,
             maxlength: 30
         },
 
