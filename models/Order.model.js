@@ -32,7 +32,11 @@ try {
             type : Number,
             required : true
         },
-        
+        status: {
+            type: String,
+            enum: ['Open', 'Closed', 'Rejected', 'Refunded', 'Completed'],
+            default: 'Open' 
+        },
         createdAt : {
             type: Date,
             default: Date.now

@@ -6,17 +6,13 @@ const { verifyToken } = require('../modules/helper');
 
 router.post('/onboard/client', async (req, res, next) => {
     try {
-        // Extract the token from the Authorization header
         let token = req.headers['authorization']?.split(' ')[1];
 
         if (!token) {
             return res.status(401).json({ message: 'Authorization token is missing.' });
         }
 
-        // Verify the token
         const verifiedToken = await verifyToken(token);
-
-        // Check if the user is Vendor
         if (verifiedToken?.data?.userType === 'Vendor') {
             const response = await VendorService.onboardClientAndOrder({
                 createdBy: verifiedToken.data.user, // Vendor ID
@@ -34,6 +30,28 @@ router.post('/onboard/client', async (req, res, next) => {
             });
             return res.status(403).json({ message: 'Access denied. Only Vendors can access this resource.' });
         }
+    } catch (error) {
+        logger.error('Error in VendorController - /onboard/client:', {
+            message: error.message,
+            stack: error.stack,
+            headers: req.headers,
+            body: req.body,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
+router.get('/clients', async (req, res, next) => {
+    try {
+        let token = req.headers['authorization']?.split(' ')[1];
+
+        const verifiedToken = await verifyToken(token);
+        const response = await VendorService.getVendorClients({
+            vendorId: verifiedToken.data.user
+        });
+        return res.json(response);
+       
     } catch (error) {
         logger.error('Error in VendorController - /onboard/client:', {
             message: error.message,

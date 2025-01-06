@@ -74,6 +74,31 @@ class VendorService {
             throw error;
         }
     }
+
+    static async getVendorClients(reqObj){
+        try {
+            let { vendorId } = reqObj;
+
+            let orderData = await Order.find({ SalesPersonId : vendorId}).populate("ClientId SalesPersonId").exec();
+
+            if(orderData !== null){
+                return {
+                    status: 200,
+                    message: 'Client Order Fetched.',
+                    result: {  order: orderData }
+                };
+            }else{
+                return { status: 409, message: 'No Data Found' };
+            }
+        } catch (error) {
+            logger.error('Error in VendorService - Get Vendor Orders:', {
+                message: error.message,
+                stack: error.stack,
+                data: reqObj
+            });
+            throw error;
+        }
+    }
 }
 
 module.exports = VendorService;
