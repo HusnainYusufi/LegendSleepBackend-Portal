@@ -33,7 +33,9 @@ class Base {
                 { url: "/auth/verifyOtp", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/auth/verifyToken", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/user/testing", methods: ['GET', 'PUT', 'POST'] },
-                //{ url: "/role/all", methods: ['GET', 'PUT', 'POST'] },
+                { url: "/role/add", methods: ['GET', 'PUT', 'POST'] },
+                { url: "/country/add", methods: ['GET', 'PUT', 'POST'] },
+                { url: "/visa/add", methods: ['GET', 'PUT', 'POST'] },
                 { url: new RegExp('^/getFiles/.*'), methods: ['GET', 'PUT', 'POST'] },
                 { url : "/sharedServices/addSharedService" , methods : ['GET' , 'PUT' , 'POST']}
             ]
