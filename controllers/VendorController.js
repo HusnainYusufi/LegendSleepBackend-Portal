@@ -64,4 +64,43 @@ router.get('/clients', async (req, res, next) => {
     }
 });
 
+
+// Route for updating the order status
+router.post('/update/status', async (req, res, next) => {
+    try {
+    
+        const token = req.headers['authorization']?.split(' ')[1];
+        const verifiedToken = await verifyToken(token);
+
+        // Ensure the user is a Vendor
+        if (verifiedToken?.data?.userType === 'Vendor') {
+            console.log(verifiedToken.data.user);
+            const response = await VendorService.updateOrderStatus({
+                vendorId: verifiedToken.data.user, 
+                ...req.body, 
+            });
+            return res.status(response.status).json(response);
+        } else {
+            logger.error('Unauthorized access attempt in VendorController - /update/status:', {
+                message: "Unauthorized access",
+                userType: verifiedToken?.data?.userType || 'Unknown',
+                userId: verifiedToken?.data?.userId || 'Unknown',
+                email: verifiedToken?.data?.email || 'Unknown',
+                ipAddress: req.ip || req.connection.remoteAddress,
+                headers: req.headers,
+            });
+            return res.status(403).json({ message: 'Access denied. Only Vendors can access this resource.' });
+        }
+    } catch (error) {
+        logger.error('Error in VendorController - /update/status:', {
+            message: error.message,
+            stack: error.stack,
+            headers: req.headers,
+            body: req.body,
+            ipAddress: req.ip || req.connection.remoteAddress,
+        });
+        next(error);
+    }
+});
+
 module.exports = router;
