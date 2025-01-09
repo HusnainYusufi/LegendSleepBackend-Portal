@@ -99,6 +99,40 @@ class VendorService {
             throw error;
         }
     }
+
+    static async updateOrderStatus(reqObj) {
+        try {
+            const { orderId, status, vendorId } = reqObj;
+
+            // Validate required fields
+            if (!orderId || !status) {
+                return { status: 400, message: 'Order ID and status are required.' };
+            }
+
+            // Fetch the order and verify the vendor is assigned to it
+            const order = await Order.findById(orderId);
+            if (!order) {
+                return { status: 404, message: 'Order not found.' };
+            }
+
+            if (String(order.SalesPersonId) !== String(vendorId)) {
+                return { status: 403, message: 'Access denied. You are not authorized to update this order.' };
+            }
+
+            // Update the order status
+            order.status = status;
+            await order.save();
+
+            return { status: 200, message: 'Order status updated successfully.', result: order };
+        } catch (error) {
+            logger.error('Error in VendorService - updateOrderStatus:', {
+                message: error.message,
+                stack: error.stack,
+                data: reqObj,
+            });
+            throw error;
+        }
+    }
 }
 
 module.exports = VendorService;

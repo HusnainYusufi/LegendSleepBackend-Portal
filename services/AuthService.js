@@ -32,7 +32,7 @@ class AuthService {
             const jwtToken = await createToken({ user });
         
             if (jwtToken) {
-                result = { status: 200, message: "Record Found", result: { jwtToken, userType : user.RoleId.name } };
+                result = { status: 200, message: "Record Found", result: { jwtToken, userType : user.RoleId.name , username : user.username } };
             }
 
             return result;
