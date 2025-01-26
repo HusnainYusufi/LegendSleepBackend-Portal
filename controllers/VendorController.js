@@ -74,7 +74,7 @@ router.post('/update/status', async (req, res, next) => {
 
         // Ensure the user is a Vendor
         if (verifiedToken?.data?.userType === 'Vendor') {
-            console.log(verifiedToken.data.user);
+            
             const response = await VendorService.updateOrderStatus({
                 vendorId: verifiedToken.data.user, 
                 ...req.body, 

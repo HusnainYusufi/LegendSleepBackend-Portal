@@ -1,7 +1,7 @@
 {
-  "name": "ganna-healing",
+  "name": "mw-immigration",
   "version": "1.0.0",
-  "description": "This  is ganna healing backend",
+  "description": "This is mw-immigration backend",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
