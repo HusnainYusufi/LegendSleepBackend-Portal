@@ -21,7 +21,6 @@ try {
         },
         password: {
             type: String,
-            required: true,
             minlength: 6
         },
         gender: {
@@ -40,7 +39,7 @@ try {
         RoleId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Role',
-            required: true
+        
         },
 
         createdAt: {

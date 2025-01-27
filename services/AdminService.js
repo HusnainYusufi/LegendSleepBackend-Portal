@@ -49,10 +49,10 @@ class AdminService {
 
     static async addVendor(reqObj) {
         try {
-            const { username, email, password, gender, phonenumber, Address, createdBy } = reqObj;
+            const { username, email, roleId , gender, phonenumber, Address, createdBy } = reqObj;
 
             // Validate required fields
-            if (!username || !email || !password || !gender || !Address) {
+            if (!username || !email  || !gender || !Address) {
                 return { status: 400, message: 'All fields are required.' };
             }
 
@@ -62,10 +62,6 @@ class AdminService {
                 throw new Error('Failed to fetch roles.');
             }
 
-            const vendorRole = rolesResponse.data.find(role => role.name === 'Vendor');
-            if (!vendorRole) {
-                throw new Error('Vendor role not found.');
-            }
 
             // Check if the email already exists
             const existingUser = await User.findOne({ email });
@@ -73,18 +69,17 @@ class AdminService {
                 return { status: 409, message: 'User with this email already exists.' };
             }
 
-            // Hash the password
-            const hashedPassword = await bcrypt.hash(password, 10);
+            // // Hash the password
+            // const hashedPassword = await bcrypt.hash(password, 10);
 
             // Create the Vendor user
             const newVendor = new User({
                 username,
                 email,
-                password: hashedPassword,
                 gender,
                 phonenumber,
                 Address,
-                RoleId: vendorRole._id,
+                RoleId: roleId,
                 createdBy : createdBy // Link to the SuperAdmin who created the Vendor
             });
 

@@ -1,0 +1,277 @@
+2025-01-28 02:37:37 [ERROR]: Unauthorized access attempt in AdminController - /give/access: Unauthorized access
+Metadata: {"role":"Unknown","userId":"Unknown","email":"superadmin@example.com","ipAddress":"::1","headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cGVyYWRtaW5AZXhhbXBsZS5jb20iLCJ1c2VyIjoiNjc3YWU3NDI1NjQxYWViNTA1M2EzZmMyIiwiZ2VuZGVyIjoibWFsZSIsInVzZXJuYW1lIjoiU3VwZXJBZG1pblVzZXIiLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoiU3VwZXJBZG1pbiIsImlhdCI6MTczNjExMjU1NiwiZXhwIjoxNzY3NjcwMTU2fQ.De0aIfvJA_sgd87BgiAeT0TkCF235dzEyOGMiKZzbsc","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"78c84c2f-7380-483a-93f4-9d11674c6ebf","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"163"}}
+---------------------------------
+
+2025-01-28 02:38:04 [ERROR]: Error in AdminService - Add Vendor: Vendor role not found.
+Stack Trace: Error: Vendor role not found.
+    at AdminService.addVendor (C:\Users\husna\MW-Immigration-Backend\services\AdminService.js:67:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AdminController.js:52:30
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"VendorUser","email":"vendor@example.com","gender":"male","phonenumber":"123456789","Address":"123 Vendor Street"}}
+---------------------------------
+
+2025-01-28 02:38:04 [ERROR]: Error in AdminController - /give/access: Vendor role not found.
+Stack Trace: Error: Vendor role not found.
+    at AdminService.addVendor (C:\Users\husna\MW-Immigration-Backend\services\AdminService.js:67:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AdminController.js:52:30
+Metadata: {"headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODAxMzg2NywiZXhwIjoxNzY5NTcxNDY3fQ.jvMabvel0aMjL3rm5d_EXtZAbdqmuS2g6fDsxIoQDfs","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"a8f55416-77c1-4028-badc-3fbb15a227ab","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"163"},"body":{"username":"VendorUser","email":"vendor@example.com","gender":"male","phonenumber":"123456789","Address":"123 Vendor Street"},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-28 02:39:09 [ERROR]: Error in AdminService - Add Vendor: Vendor role not found.
+Stack Trace: Error: Vendor role not found.
+    at AdminService.addVendor (C:\Users\husna\MW-Immigration-Backend\services\AdminService.js:67:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AdminController.js:52:30
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"VendorUser","email":"vendor@example.com","gender":"male","phonenumber":"123456789","Address":"123 Vendor Street"}}
+---------------------------------
+
+2025-01-28 02:39:09 [ERROR]: Error in AdminController - /give/access: Vendor role not found.
+Stack Trace: Error: Vendor role not found.
+    at AdminService.addVendor (C:\Users\husna\MW-Immigration-Backend\services\AdminService.js:67:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AdminController.js:52:30
+Metadata: {"headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODAxMzg2NywiZXhwIjoxNzY5NTcxNDY3fQ.jvMabvel0aMjL3rm5d_EXtZAbdqmuS2g6fDsxIoQDfs","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"23ffa59c-99c1-4c6c-b847-9f50e0e71651","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"163"},"body":{"username":"VendorUser","email":"vendor@example.com","gender":"male","phonenumber":"123456789","Address":"123 Vendor Street"},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-28 02:52:08 [ERROR]: Error in AdminService - Add Vendor: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "VendorUser" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "VendorUser" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"VendorUser","email":"yusufihusnain0@gmail.com","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"123456789","Address":"123 Vendor Street"}}
+---------------------------------
+
+2025-01-28 02:52:08 [ERROR]: Error in AdminController - /give/access: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "VendorUser" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "VendorUser" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODAxMzg2NywiZXhwIjoxNzY5NTcxNDY3fQ.jvMabvel0aMjL3rm5d_EXtZAbdqmuS2g6fDsxIoQDfs","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"2433a39a-6358-4cc5-b4ca-c688b20ab10e","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"213"},"body":{"username":"VendorUser","email":"yusufihusnain0@gmail.com","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"123456789","Address":"123 Vendor Street"},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-28 02:52:30 [ERROR]: Error in AdminService - Add Vendor: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "Husnain" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "Husnain" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"Husnain","email":"yusufihusnain0@gmail.com","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"123456789","Address":"123 Vendor Street"}}
+---------------------------------
+
+2025-01-28 02:52:30 [ERROR]: Error in AdminController - /give/access: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "Husnain" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "Husnain" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODAxMzg2NywiZXhwIjoxNzY5NTcxNDY3fQ.jvMabvel0aMjL3rm5d_EXtZAbdqmuS2g6fDsxIoQDfs","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"7a7b8e56-7750-420b-b1e4-0ac6c6d20026","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"210"},"body":{"username":"Husnain","email":"yusufihusnain0@gmail.com","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"123456789","Address":"123 Vendor Street"},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-28 03:12:03 [ERROR]: Error in /add/password controller: userService.addPassword is not a function
+Stack Trace: TypeError: userService.addPassword is not a function
+    at C:\Users\husna\MW-Immigration-Backend\controllers\UserController.js:21:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:47:12)
+Metadata: {"headers":{"content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"4ddb28b5-52a5-4543-ad61-d50534577bb8","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"76"},"body":{"email":"yusufihusnain0@gmail.com","password":"hJe9@FYR"},"ipAddress":"::1"}
+---------------------------------
+
+2025-01-28 03:46:28 [ERROR]: Error in AuthService - Login SuperAdmin: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:46:28 [ERROR]: Error in AuthController - Login: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:46:33 [ERROR]: Error in AuthService - Login SuperAdmin: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:46:33 [ERROR]: Error in AuthController - Login: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:11 [ERROR]: Error in AuthService - Login SuperAdmin: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"email":"husnain.yusufi210@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:11 [ERROR]: Error in AuthController - Login: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"body":{"email":"husnain.yusufi210@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:15 [ERROR]: Error in AuthService - Login SuperAdmin: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"email":"husnain.yusufi210@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:15 [ERROR]: Error in AuthController - Login: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"body":{"email":"husnain.yusufi210@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:40 [ERROR]: Error in AuthService - Login SuperAdmin: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:47:40 [ERROR]: Error in AuthController - Login: UserService.verifyUser is not a function
+Stack Trace: TypeError: UserService.verifyUser is not a function
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:48)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:42
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:49:17 [ERROR]: Error in AuthService - Login SuperAdmin: httpsCodes is not defined
+Stack Trace: ReferenceError: httpsCodes is not defined
+    at UserService.verifyUser (C:\Users\husna\MW-Immigration-Backend\services\UserService.js:70:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:30)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:49:17 [ERROR]: Error in AuthController - Login: httpsCodes is not defined
+Stack Trace: ReferenceError: httpsCodes is not defined
+    at UserService.verifyUser (C:\Users\husna\MW-Immigration-Backend\services\UserService.js:70:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:30)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:49:48 [ERROR]: Error in AuthService - Login SuperAdmin: language is not defined
+Stack Trace: ReferenceError: language is not defined
+    at UserService.verifyUser (C:\Users\husna\MW-Immigration-Backend\services\UserService.js:70:45)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:30)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-01-28 03:49:48 [ERROR]: Error in AuthController - Login: language is not defined
+Stack Trace: ReferenceError: language is not defined
+    at UserService.verifyUser (C:\Users\husna\MW-Immigration-Backend\services\UserService.js:70:45)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:21:30)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+

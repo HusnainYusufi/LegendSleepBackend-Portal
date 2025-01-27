@@ -28,14 +28,12 @@ class Base {
             path: [
                 { url: "/auth/login", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/auth/signup-superadmin", methods: ['GET', 'PUT', 'POST'] },
-                { url: "/notification/add", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/auth/forgotPassword", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/auth/verifyOtp", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/auth/verifyToken", methods: ['GET', 'PUT', 'POST'] },
-                { url: "/user/testing", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/role/add", methods: ['GET', 'PUT', 'POST'] },
-                { url: "/country/add", methods: ['GET', 'PUT', 'POST'] },
-                { url: "/visa/add", methods: ['GET', 'PUT', 'POST'] },
+                { url: "/role/all", methods: ['GET', 'PUT', 'POST'] },
+                { url: "/user/add/password", methods: ['GET', 'PUT', 'POST'] },
                 { url: new RegExp('^/getFiles/.*'), methods: ['GET', 'PUT', 'POST'] },
                 { url : "/sharedServices/addSharedService" , methods : ['GET' , 'PUT' , 'POST']}
             ]
