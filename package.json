@@ -52,7 +52,8 @@
     "underscore": "^1.13.6",
     "util": "^0.12.5",
     "winston": "^3.17.0",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "^4.7.1",
+    "xlsx": "^0.18.5"
   },
   "author": "HusnainYusufu",
   "license": "ISC"

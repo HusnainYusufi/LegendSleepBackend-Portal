@@ -275,3 +275,196 @@ Stack Trace: ReferenceError: language is not defined
 Metadata: {"body":{"email":"husnainyusufi@gmail.com","password":"hJe9@FYR"}}
 ---------------------------------
 
+2025-01-28 04:47:45 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../models/Order.model'
+Require stack:
+- C:\Users\husna\MW-Immigration-Backend\services\VendorService.js
+- C:\Users\husna\MW-Immigration-Backend\controllers\VendorController.js
+- C:\Users\husna\MW-Immigration-Backend\config\Routes.js
+- C:\Users\husna\MW-Immigration-Backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\MW-Immigration-Backend\services\VendorService.js:4:15)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../models/Order.model'\nRequire stack:\n- C:\\Users\\husna\\MW-Immigration-Backend\\services\\VendorService.js\n- C:\\Users\\husna\\MW-Immigration-Backend\\controllers\\VendorController.js\n- C:\\Users\\husna\\MW-Immigration-Backend\\config\\Routes.js\n- C:\\Users\\husna\\MW-Immigration-Backend\\app.js"}
+---------------------------------
+
+2025-01-28 04:48:08 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-28 05:04:15 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-28 05:04:21 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-28 05:04:43 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-28 05:06:20 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-28 05:06:57 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-29 01:55:57 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-29 01:56:12 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: Router.use() requires a middleware function but got a Object
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:469:13)
+    at Function.<anonymous> (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:227:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\application.js:224:7)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"Router.use() requires a middleware function but got a Object"}
+---------------------------------
+
+2025-01-29 01:58:42 [ERROR]: Unhandled Rejection:
+Stack Trace: Error: Cannot find module '../services/leadsService'
+Require stack:
+- C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js
+- C:\Users\husna\MW-Immigration-Backend\config\Routes.js
+- C:\Users\husna\MW-Immigration-Backend\app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:6:22)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+Metadata: {"reason":"Cannot find module '../services/leadsService'\nRequire stack:\n- C:\\Users\\husna\\MW-Immigration-Backend\\controllers\\LeadsController.js\n- C:\\Users\\husna\\MW-Immigration-Backend\\config\\Routes.js\n- C:\\Users\\husna\\MW-Immigration-Backend\\app.js"}
+---------------------------------
+
+2025-01-29 02:41:14 [ERROR]: Unauthorized access attempt in LeadsController - /add: Unauthorized access
+Metadata: {"role":"Unknown","userId":"Unknown","email":"husnainyusufi@gmail.com","ipAddress":"::1","headers":{"authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODEwMDQyOCwiZXhwIjoxNzY5NjU4MDI4fQ.UOWpm29xIkXoYY85O_nYomCTKQ0oBgiIhEDIOqmKoMM","content-type":"application/json","user-agent":"PostmanRuntime/7.43.0","accept":"*/*","postman-token":"c05dddc5-ed11-4f98-9a19-06c49aec1e4b","host":"localhost:3259","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"204"}}
+---------------------------------
+
+2025-01-29 02:42:45 [ERROR]: Error adding lead: Leads validation failed: CreatedBy: Path `CreatedBy` is required.
+Stack Trace: ValidationError: Leads validation failed: CreatedBy: Path `CreatedBy` is required.
+    at Document.invalidate (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+Metadata: {"leadData":{"Name":"John Doe","PhoneNumber":"1234567890","Inquiry":"Looking for service details","Advisor":"Jane Smith","qualifiedStatus":"Qualified","status":"Pending"}}
+---------------------------------
+
+2025-01-29 03:27:23 [ERROR]: Unhandled Rejection:
+Stack Trace: ReferenceError: upload is not defined
+    at Object.<anonymous> (C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:52:24)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:23)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"upload is not defined"}
+---------------------------------
+
+2025-01-29 03:27:26 [ERROR]: Unhandled Rejection:
+Stack Trace: ReferenceError: upload is not defined
+    at Object.<anonymous> (C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:52:24)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:23)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"upload is not defined"}
+---------------------------------
+
+2025-01-29 03:27:55 [ERROR]: Unhandled Rejection:
+Stack Trace: ReferenceError: upload is not defined
+    at Object.<anonymous> (C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:52:24)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:5:23)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"upload is not defined"}
+---------------------------------
+
