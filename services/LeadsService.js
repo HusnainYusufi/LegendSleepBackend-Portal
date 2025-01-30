@@ -155,6 +155,93 @@ class LeadsService {
             };
         }
     }
+
+    /**
+     * Update a lead by ID
+     * @param {String} leadId - ID of the lead to update
+     * @param {Object} updateFields - Fields to update
+     * @returns {Object} - Result of the operation
+     */
+    static async updateLeadById(leadId, updateFields) {
+        try {
+            // Find and update the lead
+            const updatedLead = await Leads.findByIdAndUpdate(leadId, updateFields, { new: true });
+
+            if (!updatedLead) {
+                return { status: 404, message: 'Lead not found.' };
+            }
+
+            logger.info('Lead updated successfully', {
+                leadId: updatedLead._id,
+                updatedFields: updateFields
+            });
+
+            return {
+                status: 200,
+                message: 'Lead updated successfully.',
+                data: updatedLead
+            };
+        } catch (error) {
+            logger.error('Error updating lead:', {
+                message: error.message,
+                stack: error.stack,
+                leadId
+            });
+
+            return {
+                status: 500,
+                message: 'Failed to update lead. Please try again later.',
+                error: error.message
+            };
+        }
+    }
+
+     /**
+     * Fetch all leads assigned to a user
+     * @param {String} userId - User's ID
+     * @returns {Object} - List of assigned leads
+     */
+     static async getUserLeads(userId) {
+        try {
+            // Fetch assigned leads for the user with full details
+            const assignedLeads = await LeadAssignment.find({ userId })
+                .populate({
+                    path: 'leadId', // Populate ALL lead details
+                })
+                .populate({
+                    path: 'userId', // Populate assigned user's details
+                    select: 'username email RoleId' // Fetching only necessary fields
+                })
+                .populate({
+                    path: 'assignedBy', // Populate details of admin/CRO who assigned the lead
+                    select: 'username email'
+                })
+                .exec();
+
+            if (!assignedLeads.length) {
+                return { status: 404, message: 'No leads assigned to this user.' };
+            }
+
+            logger.info(`Fetched ${assignedLeads.length} assigned leads for user ${userId}`);
+
+            return {
+                status: 200,
+                message: 'Assigned leads retrieved successfully.',
+                data: assignedLeads
+            };
+        } catch (error) {
+            logger.error('Error fetching user-specific leads:', {
+                message: error.message,
+                stack: error.stack
+            });
+
+            return {
+                status: 500,
+                message: 'Failed to fetch assigned leads.',
+                error: error.message
+            };
+        }
+    }
 }
 
 module.exports = LeadsService;

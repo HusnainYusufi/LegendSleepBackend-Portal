@@ -178,5 +178,48 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+// Route to update a lead by ID
+router.put('/update/:id', async (req, res, next) => {
+    try {
+        // Extract lead ID from request params
+        const { id } = req.params;
+        const updateFields = req.body;
+
+        // Extract and verify the authentication token
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+
+        // Allow only specific roles to update leads
+        const allowedRoles = ['superadmin', 'cro'];
+        if (!allowedRoles.includes(verifiedToken?.data?.userType?.toLowerCase())) {
+            logger.error('Unauthorized lead update attempt', {
+                role: verifiedToken?.data?.userType || 'Unknown',
+                userId: verifiedToken?.data?.userId || 'Unknown',
+                ipAddress: req.ip || req.connection.remoteAddress
+            });
+            return res.status(403).json({ message: 'Access denied. Only SuperAdmin and CRO can update leads.' });
+        }
+
+        // Call service to update the lead
+        const result = await LeadsService.updateLeadById(id, updateFields);
+
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - /update/:id', {
+            message: error.message,
+            stack: error.stack,
+            body: req.body,
+            params: req.params,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
 
 module.exports = router;

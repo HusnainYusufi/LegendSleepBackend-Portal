@@ -468,3 +468,41 @@ Stack Trace: ReferenceError: upload is not defined
 Metadata: {"reason":"upload is not defined"}
 ---------------------------------
 
+2025-01-30 05:57:13 [ERROR]: Error in UserController - /all/cro: verifyToken is not defined
+Stack Trace: ReferenceError: verifyToken is not defined
+    at C:\Users\husna\MW-Immigration-Backend\controllers\UserController.js:45:31
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\husna\MW-Immigration-Backend\node_modules\express\lib\router\index.js:47:12)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+
+2025-01-30 05:57:37 [ERROR]: Error in UserController - /all/cro: UserService is not defined
+Stack Trace: ReferenceError: UserService is not defined
+    at C:\Users\husna\MW-Immigration-Backend\controllers\UserController.js:59:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+
+2025-01-30 06:07:48 [ERROR]: Unhandled Rejection:
+Stack Trace: TypeError: app.user is not a function
+    at routes (C:\Users\husna\MW-Immigration-Backend\config\Routes.js:8:9)
+    at C:\Users\husna\MW-Immigration-Backend\app.js:18:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"reason":"app.user is not a function"}
+---------------------------------
+
+2025-01-30 06:12:34 [ERROR]: Error assigning lead: LeadAssignment validation failed: assignedBy: Path `assignedBy` is required.
+Stack Trace: ValidationError: LeadAssignment validation failed: assignedBy: Path `assignedBy` is required.
+    at Document.invalidate (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+---------------------------------
+
