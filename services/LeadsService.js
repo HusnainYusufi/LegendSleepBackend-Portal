@@ -1,6 +1,7 @@
 const Leads = require('../models/Leads.model'); // Import the Leads model
 const logger = require('../modules/logger'); // Import the logger
-
+const LeadAssignment = require('../models/LeadAssignment.model');
+const LeadDiscussion = require('../models/LeadDiscussion.model');
 class LeadsService {
     /**
      * Add a new lead to the database
@@ -240,6 +241,55 @@ class LeadsService {
                 message: 'Failed to fetch assigned leads.',
                 error: error.message
             };
+        }
+    }
+
+     /**
+     * Add a discussion to a lead
+     * @param {String} leadId - Lead ID
+     * @param {String} userId - User ID of the commenter
+     * @param {String} message - Message content
+     */
+     static async addDiscussion(leadId, userId, message) {
+        try {
+            if (!message || !leadId || !userId) {
+                return { status: 400, message: 'Lead ID, User ID, and message are required.' };
+            }
+
+            const newDiscussion = new LeadDiscussion({ leadId, userId, message });
+            await newDiscussion.save();
+
+            logger.info('New discussion added to lead', { leadId, userId, message });
+
+            return { status: 201, message: 'Discussion added successfully.', data: newDiscussion };
+        } catch (error) {
+            logger.error('Error adding discussion:', { message: error.message, stack: error.stack });
+
+            return { status: 500, message: 'Failed to add discussion.', error: error.message };
+        }
+    }
+
+    /**
+     * Fetch all discussions for a lead
+     * @param {String} leadId - Lead ID
+     */
+    static async getDiscussionsByLead(leadId) {
+        try {
+            const discussions = await LeadDiscussion.find({ leadId })
+                .populate('userId', 'username email') // Populate user details
+                .sort({ createdAt: -1 }); // Sort latest first
+
+            if (!discussions.length) {
+                return { status: 404, message: 'No discussions found for this lead.' };
+            }
+
+            logger.info(`Fetched ${discussions.length} discussions for lead ${leadId}`);
+
+            return { status: 200, message: 'Discussions retrieved successfully.', data: discussions };
+        } catch (error) {
+            logger.error('Error fetching discussions:', { message: error.message, stack: error.stack });
+
+            return { status: 500, message: 'Failed to fetch discussions.', error: error.message };
         }
     }
 }

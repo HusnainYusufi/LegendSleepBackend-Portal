@@ -133,7 +133,7 @@ router.post('/import', leadUpload.single('file'), async (req, res, next) => {
     }
 });
 
-// Route to fetch all leads (Accessible only by SuperAdmin)
+// Route to fetch all leads (SuperAdmin gets all, others get assigned leads)
 router.get('/', async (req, res, next) => {
     try {
         // Extract the token from the Authorization header
@@ -150,24 +150,18 @@ router.get('/', async (req, res, next) => {
             return res.status(401).json({ message: 'Invalid authentication token.' });
         }
 
-        // Check if the user has the required role (SuperAdmin)
+        const userId = verifiedToken?.data?.user;
         const userRole = verifiedToken?.data?.userType?.toLowerCase();
-        if (userRole !== 'superadmin') {
-            logger.error('Unauthorized access attempt in LeadsController - GET /:', {
-                message: "Unauthorized access",
-                role: userRole || 'Unknown',
-                userId: verifiedToken?.data?.userId || 'Unknown',
-                email: verifiedToken?.data?.email || 'Unknown',
-                ipAddress: req.ip || req.connection.remoteAddress,
-                headers: req.headers
-            });
-            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can view all leads.' });
+
+        // If user is a SuperAdmin, fetch all leads
+        if (userRole === 'superadmin') {
+            const result = await LeadsService.getAllLeads();
+            return res.status(result.status).json(result);
+        } else {
+            // If user is CRO, Sales Agent, or any other role, fetch only assigned leads
+            const result = await LeadsService.getUserLeads(userId);
+            return res.status(result.status).json(result);
         }
-
-        // If authorized, fetch all leads
-        const result = await LeadsService.getAllLeads();
-
-        return res.status(result.status).json(result);
     } catch (error) {
         logger.error('Error in LeadsController - GET /:', {
             message: error.message,
@@ -177,6 +171,7 @@ router.get('/', async (req, res, next) => {
         next(error);
     }
 });
+
 
 // Route to update a lead by ID
 router.put('/update/:id', async (req, res, next) => {
@@ -216,6 +211,54 @@ router.put('/update/:id', async (req, res, next) => {
             body: req.body,
             params: req.params,
             ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
+// Add a discussion to a lead
+router.post('/discussion/add', async (req, res, next) => {
+    try {
+        // Extract token from Authorization header
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Invalid token. Unable to retrieve user ID.' });
+        }
+
+        const { leadId, message } = req.body;
+
+        // Call service to add discussion
+        const result = await LeadsService.addDiscussion(leadId, userId, message);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - /discussion/add:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
+// Fetch discussions for a lead
+router.get('/discussion/:leadId', async (req, res, next) => {
+    try {
+        const { leadId } = req.params;
+
+        // Fetch discussions
+        const result = await LeadsService.getDiscussionsByLead(leadId);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - GET /discussion/:leadId:', {
+            message: error.message,
+            stack: error.stack
         });
         next(error);
     }
