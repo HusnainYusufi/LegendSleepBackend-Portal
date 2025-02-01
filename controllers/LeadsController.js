@@ -264,5 +264,59 @@ router.get('/discussion/:leadId', async (req, res, next) => {
     }
 });
 
+// Add or update a lead activity (Discussion, Follow-up, Status Update)
+router.post('/activity/add', async (req, res, next) => {
+    try {
+        // Extract token from Authorization header
+        const token = req.headers['authorization']?.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        if (!userId) {
+            return res.status(401).json({ message: 'Invalid token. Unable to retrieve user ID.' });
+        }
+
+        const { leadId, type, status, comment, followUpDate } = req.body;
+
+        // Call service to add or update activity
+        const result = await LeadsService.addOrUpdateActivity({
+            leadId,
+            userId,
+            type,
+            status,
+            comment,
+            followUpDate
+        });
+
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - /activity/add:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
+// Fetch all activities for a lead
+router.get('/activity/:leadId', async (req, res, next) => {
+    try {
+        const { leadId } = req.params;
+
+        // Fetch activities
+        const result = await LeadsService.getActivitiesByLead(leadId);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - GET /activity/:leadId:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
 
 module.exports = router;

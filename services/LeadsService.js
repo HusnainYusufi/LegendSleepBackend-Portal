@@ -2,6 +2,8 @@ const Leads = require('../models/Leads.model'); // Import the Leads model
 const logger = require('../modules/logger'); // Import the logger
 const LeadAssignment = require('../models/LeadAssignment.model');
 const LeadDiscussion = require('../models/LeadDiscussion.model');
+const LeadActivity = require('../models/LeadActivity.model');
+
 class LeadsService {
     /**
      * Add a new lead to the database
@@ -290,6 +292,87 @@ class LeadsService {
             logger.error('Error fetching discussions:', { message: error.message, stack: error.stack });
 
             return { status: 500, message: 'Failed to fetch discussions.', error: error.message };
+        }
+    }
+
+       /**
+     * Add or update a lead activity
+     * @param {Object} activityData - Activity data
+     */
+       static async addOrUpdateActivity(activityData) {
+        try {
+            const { leadId, userId, type, status, comment, followUpDate } = activityData;
+
+            if (!leadId || !userId) {
+                return { status: 400, message: 'Lead ID and User ID are required.' };
+            }
+
+            // Check if an activity already exists for this lead
+            const existingActivity = await LeadActivity.findOne({ leadId, userId });
+
+            if (existingActivity) {
+                // Update the existing activity
+                const updatedActivity = await LeadActivity.findOneAndUpdate(
+                    { leadId, userId },
+                    {
+                        $set: {
+                            type: type || existingActivity.type,
+                            status: status || existingActivity.status,
+                            comment: comment || existingActivity.comment,
+                            followUpDate: followUpDate || existingActivity.followUpDate
+                        }
+                    },
+                    { new: true } // Return updated document
+                );
+
+                logger.info('Lead activity updated', { leadId, userId });
+
+                return { status: 200, message: 'Activity updated successfully.', data: updatedActivity };
+            } else {
+                // Create a new activity
+                const newActivity = new LeadActivity({
+                    leadId,
+                    userId,
+                    type,
+                    status,
+                    comment,
+                    followUpDate
+                });
+
+                await newActivity.save();
+
+                logger.info('New activity added to lead', { leadId, userId });
+
+                return { status: 201, message: 'Activity added successfully.', data: newActivity };
+            }
+        } catch (error) {
+            logger.error('Error adding or updating activity:', { message: error.message, stack: error.stack });
+
+            return { status: 500, message: 'Failed to process activity.', error: error.message };
+        }
+    }
+
+    /**
+     * Fetch all activities for a lead
+     * @param {String} leadId - Lead ID
+     */
+    static async getActivitiesByLead(leadId) {
+        try {
+            const activities = await LeadActivity.find({ leadId })
+                .populate('userId', 'username email')
+                .sort({ createdAt: -1 });
+
+            if (!activities.length) {
+                return { status: 404, message: 'No activities found for this lead.' };
+            }
+
+            logger.info(`Fetched ${activities.length} activities for lead ${leadId}`);
+
+            return { status: 200, message: 'Activities retrieved successfully.', data: activities };
+        } catch (error) {
+            logger.error('Error fetching activities:', { message: error.message, stack: error.stack });
+
+            return { status: 500, message: 'Failed to fetch activities.', error: error.message };
         }
     }
 }

@@ -2,3 +2,26 @@
 Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
 ---------------------------------
 
+2025-01-31 18:33:56 [ERROR]: Error adding or updating activity: LeadActivity is not defined
+Stack Trace: ReferenceError: LeadActivity is not defined
+    at LeadsService.addOrUpdateActivity (C:\Users\husna\MW-Immigration-Backend\services\LeadsService.js:309:38)
+    at C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:285:43
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------
+
+2025-02-01 15:52:48 [ERROR]: Error adding or updating activity: LeadActivity validation failed: type: `Email` is not a valid enum value for path `type`.
+Stack Trace: ValidationError: LeadActivity validation failed: type: `Email` is not a valid enum value for path `type`.
+    at Document.invalidate (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+---------------------------------
+
+2025-02-01 15:53:16 [ERROR]: Error adding or updating activity: LeadActivity validation failed: type: `Email` is not a valid enum value for path `type`.
+Stack Trace: ValidationError: LeadActivity validation failed: type: `Email` is not a valid enum value for path `type`.
+    at Document.invalidate (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3318:32)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\document.js:3079:17
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\lib\schemaType.js:1388:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+---------------------------------
+
