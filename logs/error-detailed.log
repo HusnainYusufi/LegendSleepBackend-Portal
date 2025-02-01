@@ -25,3 +25,11 @@ Stack Trace: ValidationError: LeadActivity validation failed: type: `Email` is n
     at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
 ---------------------------------
 
+2025-02-01 15:57:13 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+
+2025-02-01 15:57:17 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+
