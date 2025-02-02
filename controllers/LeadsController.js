@@ -368,5 +368,67 @@ router.post('/notifications/markRead/:notificationId', async (req, res) => {
     }
 });
 
+// Toggle Remarketing Status Route
+router.put('/toggle-remarketing/:id', async (req, res, next) => {
+    console.log(req.params.id);
+    try {
+        // Extract and verify the authentication token
+        const token = req.headers['authorization']?.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+
+        if (!userId) {
+            return res.status(403).json({ message: 'Invalid authentication.' });
+        }
+
+        // Call service to toggle remarketing
+        const result = await LeadsService.toggleRemarketing(req.params.id);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - /toggle-remarketing/:id:', {
+            message: error.message,
+            stack: error.stack,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
+// Route to get remarketing leads
+router.get('/remarketing', async (req, res, next) => {
+    try {
+        // Extract and verify the authentication token
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        const userType = verifiedToken?.data?.userType?.toLowerCase();
+
+        if (!userId) {
+            return res.status(403).json({ message: 'Invalid authentication.' });
+        }
+
+        // Fetch remarketing leads based on role
+        const result = await LeadsService.getRemarketingLeads(userId, userType);
+        return res.status(result.status).json(result);
+
+    } catch (error) {
+        logger.error('Error in LeadsController - /remarketing:', {
+            message: error.message,
+            stack: error.stack,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
 
 module.exports = router;

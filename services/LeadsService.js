@@ -51,13 +51,13 @@ class LeadsService {
         }
     }
 
-     /**
-     * Add multiple leads to the database
-     * @param {Array} leadsData - Array of lead objects
-     * @param {String} createdBy - User ID of the person creating the leads
-     * @returns {Object} - Result of the operation
-     */
-     static async addLeads(leadsData, createdBy) {
+    /**
+    * Add multiple leads to the database
+    * @param {Array} leadsData - Array of lead objects
+    * @param {String} createdBy - User ID of the person creating the leads
+    * @returns {Object} - Result of the operation
+    */
+    static async addLeads(leadsData, createdBy) {
         try {
             // Attach CreatedBy to each lead
             const leadsWithCreator = leadsData.map(lead => ({
@@ -66,10 +66,10 @@ class LeadsService {
             }));
 
             // Validate each lead (basic validation; enhance as needed)
-            const validLeads = leadsWithCreator.filter(lead => 
-                lead.Name && 
-                lead.PhoneNumber && 
-                lead.Inquiry && 
+            const validLeads = leadsWithCreator.filter(lead =>
+                lead.Name &&
+                lead.PhoneNumber &&
+                lead.Inquiry &&
                 lead.status
             );
 
@@ -125,17 +125,19 @@ class LeadsService {
         }
     }
 
-     /**
-     * Fetch all leads from the database
-     * @returns {Object} - Result of the operation
-     */
-     static async getAllLeads() {
+    /**
+ * Fetch all leads from the database where remarketing is false or missing
+ * @returns {Object} - Result of the operation
+ */
+    static async getAllLeads() {
         try {
-            // Fetch all leads, populate CreatedBy field if necessary
-            const leads = await Leads.find().populate('CreatedBy', 'username email'); // Adjust fields as needed
+            // Fetch leads where remarketing is false OR where remarketing field doesn't exist
+            const leads = await Leads.find({
+                $or: [{ remarketing: false }, { remarketing: { $exists: false } }]
+            }).populate('CreatedBy', 'username email');
 
             // Log the successful retrieval
-            logger.info('All leads fetched successfully', {
+            logger.info('Filtered leads fetched successfully', {
                 count: leads.length
             });
 
@@ -146,7 +148,7 @@ class LeadsService {
             };
         } catch (error) {
             // Log the error if fetching leads fails
-            logger.error('Error fetching all leads:', {
+            logger.error('Error fetching filtered leads:', {
                 message: error.message,
                 stack: error.stack
             });
@@ -158,6 +160,7 @@ class LeadsService {
             };
         }
     }
+
 
     /**
      * Update a lead by ID
@@ -198,61 +201,69 @@ class LeadsService {
             };
         }
     }
-
-     /**
-     * Fetch all leads assigned to a user
+    /**
+     * Fetch all assigned leads where remarketing is false or missing
      * @param {String} userId - User's ID
      * @returns {Object} - List of assigned leads
      */
-     static async getUserLeads(userId) {
+    static async getUserLeads(userId) {
         try {
-            // Fetch assigned leads for the user with full details
+            // Fetch assigned leads for the user where remarketing is false or missing
             const assignedLeads = await LeadAssignment.find({ userId })
                 .populate({
-                    path: 'leadId', // Populate ALL lead details
+                    path: 'leadId',
+                    match: {
+                        $or: [{ remarketing: false }, { remarketing: { $exists: false } }]
+                    } // Fetch only leads where remarketing is false/missing
                 })
                 .populate({
-                    path: 'userId', // Populate assigned user's details
-                    select: 'username email RoleId' // Fetching only necessary fields
+                    path: 'userId',
+                    select: 'username email RoleId'
                 })
                 .populate({
-                    path: 'assignedBy', // Populate details of admin/CRO who assigned the lead
+                    path: 'assignedBy',
                     select: 'username email'
                 })
                 .exec();
 
-            if (!assignedLeads.length) {
-                return { status: 404, message: 'No leads assigned to this user.' };
+            // Remove leads that are null (if no match due to filtering)
+            const filteredLeads = assignedLeads.filter(lead => lead.leadId !== null);
+
+            if (!filteredLeads.length) {
+                return { status: 404, message: 'No assigned leads available (filtered for remarketing).' };
             }
 
-            logger.info(`Fetched ${assignedLeads.length} assigned leads for user ${userId}`);
+            logger.info(`Filtered assigned leads fetched for user ${userId}`, {
+                count: filteredLeads.length
+            });
 
             return {
                 status: 200,
                 message: 'Assigned leads retrieved successfully.',
-                data: assignedLeads
+                data: filteredLeads
             };
         } catch (error) {
-            logger.error('Error fetching user-specific leads:', {
+            logger.error('Error fetching filtered assigned leads:', {
                 message: error.message,
                 stack: error.stack
             });
 
             return {
                 status: 500,
-                message: 'Failed to fetch assigned leads.',
+                message: 'Failed to fetch assigned leads. Please try again later.',
                 error: error.message
             };
         }
     }
 
-     /**
-     * Add a discussion to a lead
-     * @param {String} leadId - Lead ID
-     * @param {String} userId - User ID of the commenter
-     * @param {String} message - Message content
-     */
-     static async addDiscussion(leadId, userId, message) {
+
+    /**
+    * Add a discussion to a lead
+    * @param {String} leadId - Lead ID
+    * @param {String} userId - User ID of the commenter
+    * @param {String} message - Message content
+    */
+    static async addDiscussion(leadId, userId, message) {
         try {
             if (!message || !leadId || !userId) {
                 return { status: 400, message: 'Lead ID, User ID, and message are required.' };
@@ -295,11 +306,11 @@ class LeadsService {
         }
     }
 
-       /**
-     * Add or update a lead activity
-     * @param {Object} activityData - Activity data
-     */
-       static async addOrUpdateActivity(activityData) {
+    /**
+  * Add or update a lead activity
+  * @param {Object} activityData - Activity data
+  */
+    static async addOrUpdateActivity(activityData) {
         try {
             const { leadId, userId, type, status, comment, followUpDate } = activityData;
 
@@ -375,6 +386,112 @@ class LeadsService {
             return { status: 500, message: 'Failed to fetch activities.', error: error.message };
         }
     }
+
+    /**
+ * Toggle remarketing status for a lead
+ * @param {String} leadId - Lead ID
+ * @returns {Object} - Updated lead response
+ */
+    static async toggleRemarketing(leadId) {
+        try {
+            // Find the lead
+            const lead = await Leads.findById(leadId);
+
+            if (!lead) {
+                return { status: 404, message: 'Lead not found.' };
+            }
+
+            // Toggle remarketing status
+            lead.remarketing = !lead.remarketing;
+            await lead.save();
+
+            logger.info(`Remarketing toggled for lead ${leadId} to ${lead.remarketing}`);
+
+            return {
+                status: 200,
+                message: `Remarketing updated to ${lead.remarketing}`,
+                data: { leadId, remarketing: lead.remarketing }
+            };
+        } catch (error) {
+            logger.error('Error toggling remarketing:', {
+                message: error.message,
+                stack: error.stack,
+                leadId
+            });
+
+            return {
+                status: 500,
+                message: 'Failed to update remarketing status.',
+                error: error.message
+            };
+        }
+    }
+
+    /**
+ * Fetch remarketing leads based on user role
+ * @param {String} userId - User ID from the token
+ * @param {String} userType - User type (SuperAdmin or Other)
+ * @returns {Object} - List of remarketing leads
+ */
+static async getRemarketingLeads(userId, userType) {
+    try {
+        let leads = [];
+
+        if (userType === 'superadmin') {
+            // Fetch all leads where remarketing is true
+            leads = await Leads.find({ remarketing: true })
+                .populate('CreatedBy', 'username email');
+            
+            logger.info(`SuperAdmin fetched all remarketing leads`, {
+                count: leads.length
+            });
+        } else {
+            // Fetch only assigned leads with remarketing enabled
+            const assignedLeads = await LeadAssignment.find({ userId })
+                .populate({
+                    path: 'leadId',
+                    match: { remarketing: true } // Filter only remarketing leads
+                })
+                .populate({
+                    path: 'userId',
+                    select: 'username email RoleId'
+                })
+                .populate({
+                    path: 'assignedBy',
+                    select: 'username email'
+                })
+                .exec();
+
+            // Remove leads that are null (if no match due to filtering)
+            leads = assignedLeads.filter(lead => lead.leadId !== null);
+
+            logger.info(`User ${userId} fetched assigned remarketing leads`, {
+                count: leads.length
+            });
+        }
+
+        if (!leads.length) {
+            return { status: 404, message: 'No remarketing leads found.' };
+        }
+
+        return {
+            status: 200,
+            message: 'Remarketing leads retrieved successfully.',
+            data: leads
+        };
+    } catch (error) {
+        logger.error('Error fetching remarketing leads:', {
+            message: error.message,
+            stack: error.stack
+        });
+
+        return {
+            status: 500,
+            message: 'Failed to fetch remarketing leads. Please try again later.',
+            error: error.message
+        };
+    }
+}
 }
 
 module.exports = LeadsService;

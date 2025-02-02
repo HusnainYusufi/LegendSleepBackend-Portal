@@ -53,6 +53,7 @@ try {
             type: String,
             enum: ['Assigned', 'Closed', 'Rejected', 'Pending', 'Completed' , 'Remarketing']
         },
+        remarketing: { type: Boolean, default: false }, // New column added
         createdAt: {
             type: Date,
             default: Date.now
