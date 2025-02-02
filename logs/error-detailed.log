@@ -33,3 +33,19 @@ Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
 Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
 ---------------------------------
 
+2025-02-02 03:09:08 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+
+2025-02-02 06:32:31 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+
+2025-02-02 06:32:40 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+
+2025-02-02 06:33:39 [ERROR]: Unauthorized attempt to access CRO users list
+Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
+---------------------------------
+

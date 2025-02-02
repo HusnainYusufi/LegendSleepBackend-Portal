@@ -47,11 +47,11 @@ try {
         },
         qualifiedStatus: {
             type: String,
-            default: "uunqualified"
+            default: "unqualified"
         },
         status: {
             type: String,
-            enum: ['Assigned', 'Closed', 'Rejected', 'Pending', 'Completed']
+            enum: ['Assigned', 'Closed', 'Rejected', 'Pending', 'Completed' , 'Remarketing']
         },
         createdAt: {
             type: Date,

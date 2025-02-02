@@ -74,47 +74,54 @@ class UserService {
         }
     }
 
-    /**
-     * Fetch all users with a specific role
-     * @param {String} roleName - Role name (e.g., "CRO")
-     * @returns {Object} - JSON response with user data
-     */
-    static async getUsersByRole(roleName) {
-        try {
-            // Find the role ID for "CRO"
-            const role = await Role.findOne({ name: roleName });
+/**
+ * Fetch users based on role restrictions
+ * @param {String|null} excludeRole - Role to exclude (e.g., "superadmin") or null for all users
+ * @param {String} requestingUserId - The userId of the requester (to exclude)
+ * @returns {Object} - JSON response with user data
+ */
+static async getAllUsersExceptRole(excludeRole, requestingUserId) {
+    try {
+        let query = { _id: { $ne: requestingUserId } }; // Exclude the requester
 
-            if (!role) {
-                return { status: 404, message: `Role "${roleName}" not found.` };
+        if (excludeRole) {
+            // Find the role ID for "SuperAdmin" to exclude
+            const excludedRole = await Role.findOne({ name: excludeRole });
+
+            if (excludedRole) {
+                query.RoleId = { $ne: excludedRole._id }; // Exclude users with this RoleId
             }
-
-            // Find users with this role ID
-            const users = await User.find({ RoleId: role._id }).select('-password').populate('RoleId', 'name');
-
-            if (!users.length) {
-                return { status: 404, message: `No users found with role "${roleName}".` };
-            }
-
-            logger.info(`Fetched ${users.length} users with role "${roleName}".`);
-
-            return {
-                status: 200,
-                message: `Users with role "${roleName}" fetched successfully.`,
-                data: users
-            };
-        } catch (error) {
-            logger.error('Error fetching users by role:', {
-                message: error.message,
-                stack: error.stack
-            });
-
-            return {
-                status: 500,
-                message: 'Failed to fetch users. Please try again later.',
-                error: error.message
-            };
         }
+
+        // Find users with the query
+        const users = await User.find(query).select('-password').populate('RoleId', 'name');
+
+        if (!users.length) {
+            return { status: 404, message: `No users found.` };
+        }
+
+        logger.info(`Fetched ${users.length} users, excluding role: ${excludeRole || 'None'}, and excluding requester: ${requestingUserId}`);
+
+        return {
+            status: 200,
+            message: `Users fetched successfully.`,
+            data: users
+        };
+    } catch (error) {
+        logger.error('Error fetching users:', {
+            message: error.message,
+            stack: error.stack
+        });
+
+        return {
+            status: 500,
+            message: 'Failed to fetch users. Please try again later.',
+            error: error.message
+        };
     }
+}
+
+
 }
 
 module.exports = UserService;

@@ -7,6 +7,7 @@ const leadUpload = require('../services/leadUpload');// Import the leads multer 
 const XLSX = require('xlsx'); // Import xlsx for Excel parsing
 const fs = require('fs');
 const path = require('path');
+const Notification = require('../models/Notification.model');
 
 // Route to add a lead
 router.post('/add', async (req, res, next) => {
@@ -315,6 +316,55 @@ router.get('/activity/:leadId', async (req, res, next) => {
             stack: error.stack
         });
         next(error);
+    }
+});
+
+router.get('/notifications', async (req, res) => {
+    try {
+        const token = req.headers['authorization']?.split(' ')[1];
+        if (!token) return res.status(401).json({ message: 'Authentication token missing.' });
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        if (!userId) return res.status(401).json({ message: 'Invalid token.' });
+
+        // Fetch unread notifications for the user
+        const notifications = await Notification.find({ userId, isRead: false })
+            .populate('leadId', 'Name');
+
+        res.status(200).json({ status: 200, data: notifications });
+    } catch (error) {
+        console.error('Error fetching notifications:', error);
+        res.status(500).json({ message: 'Failed to fetch notifications.' });
+    }
+});
+
+router.post('/notifications/markRead/:notificationId', async (req, res) => {
+    try {
+        const token = req.headers['authorization']?.split(' ')[1];
+        if (!token) return res.status(401).json({ message: 'Authentication token missing.' });
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        if (!userId) return res.status(401).json({ message: 'Invalid token.' });
+
+        const { notificationId } = req.params;
+
+        // Find and update the specific notification
+        const notification = await Notification.findOneAndUpdate(
+            { _id: notificationId, userId },
+            { isRead: true },
+            { new: true }
+        );
+
+        if (!notification) {
+            return res.status(404).json({ message: 'Notification not found or already marked read.' });
+        }
+
+        res.status(200).json({ status: 200, message: 'Notification marked as read.', data: notification });
+    } catch (error) {
+        console.error('Error marking notification as read:', error);
+        res.status(500).json({ message: 'Failed to update notification.' });
     }
 });
 

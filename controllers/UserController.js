@@ -33,7 +33,7 @@ router.post('/add/password', async (req, res, next) => {
     }
 });
 
-// Route to fetch users with the role "CRO"
+// Route to fetch users based on role access
 router.get('/all/cro', async (req, res, next) => {
     try {
         // Extract and verify the authentication token
@@ -44,19 +44,22 @@ router.get('/all/cro', async (req, res, next) => {
         }
 
         const verifiedToken = await verifyToken(token);
+        const userType = verifiedToken?.data?.userType?.toLowerCase();
+        const requestingUserId = verifiedToken?.data?.user; // Get the userId of the requester
 
-        // Allow only SuperAdmin to fetch CRO users
-        if (verifiedToken?.data?.userType.toLowerCase() !== 'superadmin') {
-            logger.error('Unauthorized attempt to access CRO users list', {
-                role: verifiedToken?.data?.userType || 'Unknown',
-                userId: verifiedToken?.data?.userId || 'Unknown',
-                ipAddress: req.ip || req.connection.remoteAddress
-            });
-            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can fetch CRO users.' });
+        if (!userType || !requestingUserId) {
+            return res.status(403).json({ message: 'Access denied. Invalid role or userId missing.' });
         }
 
-        // Fetch users with role "CRO"
-        const result = await userService.getUsersByRole('cro');
+        let result;
+        if (userType === 'superadmin') {
+            // If SuperAdmin, fetch all users (CRO, SalesAgent, Others) except the requester
+            result = await userService.getAllUsersExceptRole(null, requestingUserId);
+        } else {
+            // If not SuperAdmin, fetch all users except SuperAdmin and the requester
+            result = await userService.getAllUsersExceptRole('superadmin', requestingUserId);
+        }
+
         return res.status(result.status).json(result);
     } catch (error) {
         logger.error('Error in UserController - /all/cro:', {
@@ -67,6 +70,9 @@ router.get('/all/cro', async (req, res, next) => {
         next(error);
     }
 });
+
+
+
 
 // Route to fetch leads assigned to a user
 router.get('/my-leads', async (req, res, next) => {
