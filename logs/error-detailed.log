@@ -49,3 +49,17 @@ Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
 Metadata: {"role":"cro","userId":"Unknown","ipAddress":"::1"}
 ---------------------------------
 
+2025-02-03 03:33:06 [ERROR]: Error in LeadsController - /qualified-status/:leadId Cannot read properties of undefined (reading 'toLowerCase')
+Stack Trace: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:455:68
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+
+2025-02-03 03:33:52 [ERROR]: Error in LeadsController - /qualified-status/:leadId Cannot read properties of undefined (reading 'toLowerCase')
+Stack Trace: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at C:\Users\husna\MW-Immigration-Backend\controllers\LeadsController.js:451:68
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+

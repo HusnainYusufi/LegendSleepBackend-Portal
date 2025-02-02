@@ -37,7 +37,7 @@ router.post('/login', async (req, res, next) => {
     try {
         
         const result = await AuthService.login({ ...req.body });
-        console.log('result resoinse' , result);
+       
         return res.json(result);
     } catch (error) {
         logger.error('Error in AuthController - Login:', {

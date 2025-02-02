@@ -13,7 +13,6 @@ const Notification = require('../models/Notification.model');
 router.post('/add', async (req, res, next) => {
     try {
 
-        console.log(req.body);
         // Extract the token from the Authorization header
         const token = req.headers['authorization']?.split(' ')[1];
 
@@ -23,8 +22,7 @@ router.post('/add', async (req, res, next) => {
 
         // Verify the token and extract the user's role
         const verifiedToken = await verifyToken(token);
-        console.log(verifiedToken);
-
+      
         // Check if the user has the required role (SuperAdmin or CRO)
         const allowedRoles = ['superadmin', 'cro'];
         if (!allowedRoles.includes(verifiedToken?.data?.userType?.toLowerCase())) {
@@ -65,7 +63,7 @@ router.post('/import', leadUpload.single('file'), async (req, res, next) => {
 
         // Verify the token and extract the user's role
         const verifiedToken = await verifyToken(token);
-        console.log(verifiedToken);
+       
 
         // Check if the user has the required role (SuperAdmin or CRO)
         const allowedRoles = ['superadmin', 'cro'];
@@ -106,8 +104,7 @@ router.post('/import', leadUpload.single('file'), async (req, res, next) => {
             return res.status(400).json({ message: 'The uploaded file is empty.' });
         }
 
-        // Optional: Log the parsed data
-        console.log('Parsed Leads:', jsonData);
+      
 
         // Process and add leads using the service
         const result = await LeadsService.addLeads(jsonData, verifiedToken.data.user);
@@ -370,7 +367,7 @@ router.post('/notifications/markRead/:notificationId', async (req, res) => {
 
 // Toggle Remarketing Status Route
 router.put('/toggle-remarketing/:id', async (req, res, next) => {
-    console.log(req.params.id);
+   
     try {
         // Extract and verify the authentication token
         const token = req.headers['authorization']?.split(' ')[1];
@@ -429,6 +426,46 @@ router.get('/remarketing', async (req, res, next) => {
         next(error);
     }
 });
+
+/**
+ * Update qualified status of a lead
+ * @route PUT /leads/qualified-status/:leadId
+ */
+router.put('/qualified-status/:leadId', async (req, res, next) => {
+    try {
+        // Extract and verify the authentication token
+        const token = req.headers['authorization']?.split(' ')[1];
+        
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        const userType = verifiedToken?.data?.userType?.toLowerCase();
+
+        if (!userId) {
+            return res.status(403).json({ message: 'Invalid authentication.' });
+        }
+
+        // Extract lead ID and new status from request
+        const { leadId } = req.params;
+        const { qualifiedStatus } = req.body; // Expect "qualified" or "unqualified"
+
+        if (!['qualified', 'unqualified'].includes(qualifiedStatus.toLowerCase())) {
+            return res.status(400).json({ message: 'Invalid qualifiedStatus value. Allowed values: "qualified", "unqualified".' });
+        }
+
+        // Update qualified status
+        const result = await LeadsService.updateQualifiedStatus(leadId, qualifiedStatus);
+        return res.status(result.status).json(result);
+
+    } catch (error) {
+        logger.error('Error in LeadsController - /qualified-status/:leadId', {
+            message: error.message,
+            stack: error.stack,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
 
 
 module.exports = router;

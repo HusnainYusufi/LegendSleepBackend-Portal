@@ -29,7 +29,7 @@ app.post('/addSharedService', upload.fields([
         return res.json(result);
      
     } catch (error) {
-        console.log(error);
+       
         return res.status(500).json({ message: 'An error occurred while uploading the audio files.' });
     }
 });
