@@ -535,6 +535,60 @@ class LeadsService {
             };
         }
     }
+
+    /**
+ * Fetch lead counts based on user type
+ * @param {String} userId - User ID from JWT token
+ * @param {String} userType - User type (superadmin or other roles)
+ * @returns {Object} - Lead counts
+ */
+    static async getLeadCounts(userId, userType) {
+        try {
+            let totalLeads, remarketingLeads, qualifiedLeads, unqualifiedLeads;
+
+            if (userType === 'superadmin') {
+                // Fetch counts for all leads (for superadmin)
+                totalLeads = await Leads.countDocuments();
+                remarketingLeads = await Leads.countDocuments({ remarketing: true });
+                qualifiedLeads = await Leads.countDocuments({ qualifiedStatus: 'qualified' });
+                unqualifiedLeads = await Leads.countDocuments({ qualifiedStatus: 'unqualified' });
+            } else {
+                // Fetch counts only for leads assigned to the user
+                const assignedLeads = await LeadAssignment.find({ userId }).select('leadId');
+                const assignedLeadIds = assignedLeads.map(l => l.leadId);
+
+                totalLeads = await Leads.countDocuments({ _id: { $in: assignedLeadIds } });
+                remarketingLeads = await Leads.countDocuments({ _id: { $in: assignedLeadIds }, remarketing: true });
+                qualifiedLeads = await Leads.countDocuments({ _id: { $in: assignedLeadIds }, qualifiedStatus: 'qualified' });
+                unqualifiedLeads = await Leads.countDocuments({ _id: { $in: assignedLeadIds }, qualifiedStatus: 'unqualified' });
+            }
+
+            logger.info(`Lead counts fetched successfully for user ${userId}`);
+
+            return {
+                status: 200,
+                message: 'Lead counts retrieved successfully.',
+                data: {
+                    totalLeads,
+                    remarketingLeads,
+                    qualifiedLeads,
+                    unqualifiedLeads
+                }
+            };
+        } catch (error) {
+            logger.error('Error fetching lead counts:', {
+                message: error.message,
+                stack: error.stack,
+                userId
+            });
+
+            return {
+                status: 500,
+                message: 'Failed to fetch lead counts. Please try again later.',
+                error: error.message
+            };
+        }
+    }
 }
 
 module.exports = LeadsService;

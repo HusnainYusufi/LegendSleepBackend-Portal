@@ -468,4 +468,41 @@ router.put('/qualified-status/:leadId', async (req, res, next) => {
 
 
 
+/**
+ * Fetch lead counts based on user type
+ * @route GET /leads/counts
+ */
+router.get('/counts', async (req, res, next) => {
+    try {
+        // Extract and verify the authentication token
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        const userType = verifiedToken?.data?.userType?.toLowerCase();
+
+        if (!userId) {
+            return res.status(403).json({ message: 'Invalid authentication.' });
+        }
+
+        // Fetch lead counts based on user type
+        const result = await LeadsService.getLeadCounts(userId, userType);
+        return res.status(result.status).json(result);
+
+    } catch (error) {
+        logger.error('Error in LeadsController - /counts:', {
+            message: error.message,
+            stack: error.stack,
+            ipAddress: req.ip || req.connection.remoteAddress
+        });
+        next(error);
+    }
+});
+
+
+
 module.exports = router;
