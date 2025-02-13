@@ -3,7 +3,7 @@ const moment = require('moment');
 const Activity = require('../models/LeadActivity.model');
 const Notification = require('../models/Notification.model');
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 * * * *', async () => {
     try {
         console.log('Running Follow-up Notification Job...');
 
@@ -20,6 +20,11 @@ cron.schedule('* * * * *', async () => {
         }
 
         for (const activity of overdueActivities) {
+            if (!activity.userId) {
+                console.warn(`Skipping activity ${activity._id} as userId is missing.`);
+                continue; // Skip processing this activity
+            }
+
             // Check if a notification already exists
             const existingNotification = await Notification.findOne({
                 userId: activity.userId._id,
