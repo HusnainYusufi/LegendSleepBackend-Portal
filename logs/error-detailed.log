@@ -63,3 +63,167 @@ Stack Trace: TypeError: Cannot read properties of undefined (reading 'toLowerCas
 Metadata: {"ipAddress":"::1"}
 ---------------------------------
 
+2025-02-07 05:13:05 [ERROR]: Error in AdminService - Add Vendor: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"demo","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"03028864928","Address":"Antonio Flores St"}}
+---------------------------------
+
+2025-02-07 05:13:05 [ERROR]: Error in AdminController - /give/access: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"headers":{"host":"localhost:3259","connection":"keep-alive","content-length":"185","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODg4NjE4MCwiZXhwIjoxNzcwNDQzNzgwfQ.bhpzIOnDWQWyZlmeW8uN6gIm_5JXistkHZ3-XgczUEo","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36","sec-ch-ua":"\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"","dnt":"1","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,ur-PK;q=0.8,ur;q=0.7"},"body":{"username":"demo","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"03028864928","Address":"Antonio Flores St"},"ipAddress":"::1"}
+---------------------------------
+
+2025-02-07 05:14:15 [ERROR]: Error in AdminService - Add Vendor: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"demo","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"03028864928","Address":"Antonio Flores St"}}
+---------------------------------
+
+2025-02-07 05:14:15 [ERROR]: Error in AdminController - /give/access: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "demo" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"headers":{"host":"localhost:3259","connection":"keep-alive","content-length":"185","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODg4NjE4MCwiZXhwIjoxNzcwNDQzNzgwfQ.bhpzIOnDWQWyZlmeW8uN6gIm_5JXistkHZ3-XgczUEo","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36","sec-ch-ua":"\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"","dnt":"1","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,ur-PK;q=0.8,ur;q=0.7"},"body":{"username":"demo","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f41f084819f7127d17aa","phonenumber":"03028864928","Address":"Antonio Flores St"},"ipAddress":"::1"}
+---------------------------------
+
+2025-02-07 05:16:26 [ERROR]: Error in AdminService - Add Vendor: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "husnain" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "husnain" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"data":{"createdBy":"6797f4db1b1ee38cd577af5e","username":"husnain","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f408084819f7127d17a8","phonenumber":"03028864928","Address":"130 130 Block B"}}
+---------------------------------
+
+2025-02-07 05:16:26 [ERROR]: Error in AdminController - /give/access: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "husnain" }
+Stack Trace: MongoServerError: E11000 duplicate key error collection: mwimmigration.users index: username_1 dup key: { username: "husnain" }
+    at InsertOneOperation.execute (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async tryOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:192:20)
+    at async executeOperation (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\operations\execute_operation.js:69:16)
+    at async Collection.insertOne (C:\Users\husna\MW-Immigration-Backend\node_modules\mongoose\node_modules\mongodb\lib\collection.js:154:16)
+Metadata: {"headers":{"host":"localhost:3259","connection":"keep-alive","content-length":"186","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c25haW55dXN1ZmlAZ21haWwuY29tIiwidXNlciI6IjY3OTdmNGRiMWIxZWUzOGNkNTc3YWY1ZSIsImdlbmRlciI6Im1hbGUiLCJ1c2VybmFtZSI6Ikh1c25haW4iLCJwaG9uZW51bWJlciI6IjEyMzQ1Njc4OSIsInVzZXJUeXBlIjoic3VwZXJhZG1pbiIsImlhdCI6MTczODg4NjE4MCwiZXhwIjoxNzcwNDQzNzgwfQ.bhpzIOnDWQWyZlmeW8uN6gIm_5JXistkHZ3-XgczUEo","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36","sec-ch-ua":"\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"","dnt":"1","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,ur-PK;q=0.8,ur;q=0.7"},"body":{"username":"husnain","email":"husnainyusufi84@gmail.com","password":"hus123","gender":"male","roleId":"6797f408084819f7127d17a8","phonenumber":"03028864928","Address":"130 130 Block B"},"ipAddress":"::1"}
+---------------------------------
+
+2025-02-13 04:31:16 [ERROR]: Error in AuthService - Login SuperAdmin: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"yusufihusnain10@gmail.com","password":"hus12345"}}
+---------------------------------
+
+2025-02-13 04:31:16 [ERROR]: Error in AuthController - Login: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"yusufihusnain10@gmail.com","password":"hus12345"}}
+---------------------------------
+
+2025-02-13 04:31:22 [ERROR]: Error in AuthService - Login SuperAdmin: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"yusufihusnain10@gmail.com","password":"hus123"}}
+---------------------------------
+
+2025-02-13 04:31:22 [ERROR]: Error in AuthController - Login: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"yusufihusnain10@gmail.com","password":"hus123"}}
+---------------------------------
+
+2025-02-13 04:31:29 [ERROR]: Error in AuthService - Login SuperAdmin: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"yusufihusnain10@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-02-13 04:31:29 [ERROR]: Error in AuthController - Login: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"yusufihusnain10@gmail.com","password":"hJe9@FYR"}}
+---------------------------------
+
+2025-02-13 04:31:35 [ERROR]: Error in AuthService - Login SuperAdmin: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"data":{"email":"yusufihusnain10@gmail.com","password":"hus123"}}
+---------------------------------
+
+2025-02-13 04:31:35 [ERROR]: Error in AuthController - Login: data and hash arguments required
+Stack Trace: Error: data and hash arguments required
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:208:17)
+    at C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\husna\MW-Immigration-Backend\node_modules\bcrypt\bcrypt.js:204:25)
+    at AuthService.login (C:\Users\husna\MW-Immigration-Backend\services\AuthService.js:28:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\husna\MW-Immigration-Backend\controllers\AuthController.js:39:24
+Metadata: {"body":{"email":"yusufihusnain10@gmail.com","password":"hus123"}}
+---------------------------------
+
