@@ -12,40 +12,54 @@ const RoleService = require('../services/RoleService');
 
 class AdminService {
 
-    //get all users
-    static async getAllUsers() {
-        try {
-            let result = "";
+/**
+ * Get all users (Only for SuperAdmin)
+ * @returns {Object} - List of users with password status ✅ ❌ and role name
+ */
+static async getAllUsers() {
+    try {
+        // Fetch users and populate the RoleId field to get role names
+        const users = await User.find()
+            .select('username email gender phonenumber Address RoleId password')
+            .populate('RoleId', 'name'); // Populate RoleId to get role name
 
-            // Fetch all roles
-            let rolesResponse = await RoleService.getAllRoles();
-
-            // Check if roles were fetched successfully
-            if (rolesResponse.status !== 200) {
-                throw new Error('Failed to fetch roles');
-            }
-
-            let vendorRole = rolesResponse.data.find(role => role.name === 'Vendor');
-
-            if (!vendorRole) {
-                throw new Error('Vendor role not found');
-            }
-            let vendorRoleId = vendorRole._id;
-            const users = await User.find({ RoleId: vendorRoleId }).populate('RoleId').exec();
-
-            return {
-                status: 200,
-                message: 'Users fetched successfully',
-                result: users
-            };
-        } catch (error) {
-            logger.error('Error in AdminService - Get All Users:', {
-                message: error.message,
-                stack: error.stack
-            });
-            throw error;
+        if (!users.length) {
+            return { status: 404, message: 'No users found.' };
         }
+
+        // Format response to show ✅ or ❌ for password status and role name
+        const formattedUsers = users.map(user => ({
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            gender: user.gender,
+            phonenumber: user.phonenumber || 'N/A',
+            address: user.Address,
+            role: user.RoleId ? user.RoleId.name : 'N/A', // Show role name instead of ID
+            passwordStatus: user.password ? '✅' : '❌' // ✅ if password exists, ❌ if null/undefined
+        }));
+
+        logger.info('Fetched all users successfully for SuperAdmin');
+
+        return {
+            status: 200,
+            message: 'Users retrieved successfully.',
+            data: formattedUsers
+        };
+    } catch (error) {
+        logger.error('Error in AdminService - Get All Users:', {
+            message: error.message,
+            stack: error.stack
+        });
+
+        return {
+            status: 500,
+            message: 'Failed to fetch users. Please try again later.',
+            error: error.message
+        };
     }
+}
+
 
     static async addVendor(reqObj) {
         try {

@@ -5,33 +5,34 @@ const UserService = require('../services/UserService');
 const { verifyToken , sendEmail } = require('../modules/helper');
 const logger = require('../modules/logger'); // Import logger
 
-// Route to get all users
-router.get('/all/users', async (req, res, next) => {
+
+// ✅ Route to get all users (Only accessible by SuperAdmin)
+router.get('/all-users', async (req, res, next) => {
     try {
-        let token = req.headers['authorization']?.split(' ')[1];
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
 
         const verifiedToken = await verifyToken(token);
-
-        if (verifiedToken?.data?.userType === 'SuperAdmin') {
-            const response = await AdminService.getAllUsers({ token });
-            res.json(response);
-        } else {
-            logger.error('Unauthorized access attempt in AdminController - /all/users:', {
-                message: "Unauthorized access",
-                userType: verifiedToken?.data?.userType || 'Unknown',
+        if (!verifiedToken?.data?.userType || verifiedToken?.data?.userType.toLowerCase() !== 'superadmin') {
+            logger.error('Unauthorized access attempt in AdminController - /all-users:', {
                 userId: verifiedToken?.data?.userId || 'Unknown',
                 email: verifiedToken?.data?.email || 'Unknown',
-                ipAddress: req.ip || req.connection.remoteAddress,
-                headers: req.headers
+                ipAddress: req.ip || req.connection.remoteAddress
             });
-            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can access this resource.' });
+            return res.status(403).json({ message: 'Access denied. Only SuperAdmin can view users.' });
         }
+
+        // Fetch users from AdminService
+        const result = await AdminService.getAllUsers();
+
+        return res.status(result.status).json(result);
     } catch (error) {
-        logger.error('Error in AdminController - /all/users:', {
+        logger.error('Error in AdminController - /all-users:', {
             message: error.message,
             stack: error.stack,
-            headers: req.headers,
-            body: req.body,
             ipAddress: req.ip || req.connection.remoteAddress
         });
         next(error);

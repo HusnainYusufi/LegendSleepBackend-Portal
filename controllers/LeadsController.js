@@ -316,6 +316,40 @@ router.get('/activity/:leadId', async (req, res, next) => {
     }
 });
 
+/**
+ * Get all follow-ups saved by the authenticated user
+ */
+router.get('/my-followups', async (req, res, next) => {
+    try {
+        // Extract the token from headers
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        // Verify token and extract user ID
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Invalid authentication token.' });
+        }
+
+        // Fetch all follow-ups created by this user
+        const result = await LeadsService.getUserFollowUps(userId);
+
+        return res.status(result.status).json(result);
+
+    } catch (error) {
+        logger.error('Error in LeadsController - GET /my-followups:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
 router.get('/notifications', async (req, res) => {
     try {
         const token = req.headers['authorization']?.split(' ')[1];
