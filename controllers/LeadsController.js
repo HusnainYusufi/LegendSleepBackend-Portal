@@ -537,6 +537,43 @@ router.get('/counts', async (req, res, next) => {
     }
 });
 
+/**
+ * Fetch leads based on filter criteria with role-based access
+ */
+router.get('/filter', async (req, res, next) => {
+    try {
+        // Extract the token from the request
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({ message: 'Authentication token missing.' });
+        }
+
+        // Verify the user token
+        const verifiedToken = await verifyToken(token);
+        const userId = verifiedToken?.data?.user;
+        const userRole = verifiedToken?.data?.userType?.toLowerCase();
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Invalid authentication token.' });
+        }
+
+        // Extract filters from query params
+        const filters = req.query;
+
+        // Fetch filtered leads with role-based restrictions
+        const result = await LeadsService.getFilteredLeads(filters, userId, userRole);
+
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in LeadsController - GET /filter:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
 
 
 module.exports = router;

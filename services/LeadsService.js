@@ -338,83 +338,90 @@ class LeadsService {
     }
   }
 
-/**
- * Add a new follow-up activity without replacing old ones
- * @param {Object} activityData - Activity data
- */
-static async addOrUpdateActivity(activityData) {
+  /**
+   * Add a new follow-up activity without replacing old ones
+   * @param {Object} activityData - Activity data
+   */
+  static async addOrUpdateActivity(activityData) {
     try {
-        const { leadId, userId, type, status, comment, followUpDate } = activityData;
+      const { leadId, userId, type, status, comment, followUpDate } =
+        activityData;
 
-        if (!leadId || !userId) {
-            return { status: 400, message: 'Lead ID and User ID are required.' };
-        }
+      if (!leadId || !userId) {
+        return { status: 400, message: "Lead ID and User ID are required." };
+      }
 
-        // Create a new follow-up record (DO NOT UPDATE EXISTING ONES)
-        const newActivity = new LeadActivity({
-            leadId,
-            userId,
-            type,
-            status,
-            comment,
-            followUpDate
-        });
+      // Create a new follow-up record (DO NOT UPDATE EXISTING ONES)
+      const newActivity = new LeadActivity({
+        leadId,
+        userId,
+        type,
+        status,
+        comment,
+        followUpDate,
+      });
 
-        await newActivity.save();
+      await newActivity.save();
 
-        logger.info('New follow-up added', { leadId, userId });
+      logger.info("New follow-up added", { leadId, userId });
 
-        return { 
-            status: 201, 
-            message: 'Follow-up added successfully.', 
-            data: newActivity 
-        };
+      return {
+        status: 201,
+        message: "Follow-up added successfully.",
+        data: newActivity,
+      };
     } catch (error) {
-        logger.error('Error adding follow-up:', { message: error.message, stack: error.stack });
+      logger.error("Error adding follow-up:", {
+        message: error.message,
+        stack: error.stack,
+      });
 
-        return { 
-            status: 500, 
-            message: 'Failed to add follow-up.', 
-            error: error.message 
-        };
+      return {
+        status: 500,
+        message: "Failed to add follow-up.",
+        error: error.message,
+      };
     }
-}
+  }
 
-
-
-/**
- * Fetch all follow-ups (full history) for a lead
- * @param {String} leadId - Lead ID
- */
-static async getActivitiesByLead(leadId) {
+  /**
+   * Fetch all follow-ups (full history) for a lead
+   * @param {String} leadId - Lead ID
+   */
+  static async getActivitiesByLead(leadId) {
     try {
-        // Fetch all follow-up records for the given lead ID
-        const activities = await LeadActivity.find({ leadId })
-            .populate('userId', 'username email') // Populate user details
-            .sort({ createdAt: -1 }); // Sort latest first
+      // Fetch all follow-up records for the given lead ID
+      const activities = await LeadActivity.find({ leadId })
+        .populate("userId", "username email") // Populate user details
+        .sort({ createdAt: -1 }); // Sort latest first
 
-        if (!activities.length) {
-            return { status: 404, message: 'No follow-up history found for this lead.' };
-        }
-
-        logger.info(`Fetched ${activities.length} follow-ups for lead ${leadId}`);
-
-        return { 
-            status: 200, 
-            message: 'Follow-up history retrieved successfully.', 
-            data: activities 
+      if (!activities.length) {
+        return {
+          status: 404,
+          message: "No follow-up history found for this lead.",
         };
+      }
+
+      logger.info(`Fetched ${activities.length} follow-ups for lead ${leadId}`);
+
+      return {
+        status: 200,
+        message: "Follow-up history retrieved successfully.",
+        data: activities,
+      };
     } catch (error) {
-        logger.error('Error fetching follow-up history:', { message: error.message, stack: error.stack });
+      logger.error("Error fetching follow-up history:", {
+        message: error.message,
+        stack: error.stack,
+      });
 
-        return { 
-            status: 500, 
-            message: 'Failed to fetch follow-up history.', 
-            error: error.message 
-        };
+      return {
+        status: 500,
+        message: "Failed to fetch follow-up history.",
+        error: error.message,
+      };
     }
-}
-
+  }
 
   /**
    * Toggle remarketing status for a lead
@@ -679,6 +686,103 @@ static async getActivitiesByLead(leadId) {
       return {
         status: 500,
         message: "Failed to fetch user follow-ups.",
+        error: error.message,
+      };
+    }
+  }
+
+  /**
+   * Fetch leads based on filter criteria with role-based access
+   * @param {Object} filters - Query parameters from request
+   * @param {String} userId - Authenticated user's ID
+   * @param {String} userRole - User's role (SuperAdmin, Admin, etc.)
+   */
+  static async getFilteredLeads(filters, userId, userRole) {
+    try {
+      let query = {};
+
+      // Apply date range filter
+      if (filters.startDate || filters.endDate) {
+        query.createdAt = {};
+        if (filters.startDate) {
+          query.createdAt.$gte = new Date(filters.startDate);
+        }
+        if (filters.endDate) {
+          query.createdAt.$lte = new Date(filters.endDate);
+        }
+      }
+
+      // Apply name or phone number search
+      if (filters.namePhone) {
+        query.$or = [
+          { Name: { $regex: filters.namePhone, $options: "i" } },
+          { PhoneNumber: { $regex: filters.namePhone, $options: "i" } },
+        ];
+      }
+
+      // Apply status filter
+      if (filters.status) {
+        query.status = filters.status;
+      }
+
+      // Apply qualified status filter
+      if (filters.qualifiedStatus) {
+        query.qualifiedStatus = filters.qualifiedStatus.toLowerCase();
+      }
+
+      // Apply advisor filter
+      if (filters.advisor) {
+        query.Advisor = filters.advisor;
+      }
+
+      // Apply source filter
+      if (filters.source) {
+        query.Source = filters.source;
+      }
+
+      // **Role-Based Access:**
+      if (userRole !== "superadmin") {
+        if (userRole === "admin") {
+          // Admins can see all leads, no additional restriction
+        } else {
+          // Other users can only see assigned leads
+          const assignedLeads = await LeadAssignment.find({ userId }).select(
+            "leadId"
+          );
+          const assignedLeadIds = assignedLeads.map((l) => l.leadId);
+          query._id = { $in: assignedLeadIds };
+        }
+      }
+
+      // Execute the query with filters
+      const leads = await Leads.find(query).populate(
+        "CreatedBy",
+        "username email"
+      );
+
+      if (!leads.length) {
+        return {
+          status: 404,
+          message: "No leads found with the given filters.",
+        };
+      }
+
+      logger.info(`User ${userId} fetched ${leads.length} filtered leads`);
+
+      return {
+        status: 200,
+        message: "Filtered leads retrieved successfully.",
+        data: leads,
+      };
+    } catch (error) {
+      logger.error("Error fetching filtered leads:", {
+        message: error.message,
+        stack: error.stack,
+      });
+
+      return {
+        status: 500,
+        message: "Failed to fetch leads. Please try again later.",
         error: error.message,
       };
     }
