@@ -49,6 +49,7 @@ router.post('/give/access', async (req, res, next) => {
             return res.status(401).json({ message: 'Authentication token missing.' });
         }
 
+        console.log(req.body);
         // Verify the token
         const verifiedToken = await verifyToken(token);
 
@@ -68,16 +69,16 @@ router.post('/give/access', async (req, res, next) => {
                 const user = response.result; // Vendor created
 
                 // Generate the reset link with the user's email
-                const resetLink = `https://crm.mwimmigration.org/setPassword.php?email=${encodeURIComponent(user.email)}`;
+                const resetLink = `http://localhost/LegendSleep-Ticketing/setPassword.php?email=${encodeURIComponent(user.email)}`;
 
                 // Generate the HTML email content
                 const emailHtml = `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                     <div style="background-color: #f4f4f4; padding: 20px;">
-                        <h2 style="text-align: center; color: #555;">Welcome to MW Immigration Portal</h2>
+                        <h2 style="text-align: center; color: #555;">Welcome to Legend Sleep Ticketing Portal</h2>
                         <p style="font-size: 16px;">
                             Hello <strong>${user.username}</strong>,<br><br>
-                            Welcome to MW Immigration Portal! We're thrilled to have you onboard.
+                            Welcome to Legend Sleep Ticketing Portal! We're thrilled to have you onboard.
                         </p>
                         <p style="font-size: 16px;">
                             Please click the link below to set your password and access your portal:
@@ -88,11 +89,11 @@ router.post('/give/access', async (req, res, next) => {
                             </a>
                         </p>
                         <p style="font-size: 16px;">
-                            If you have any questions, feel free to reach out to us at <a href="mailto:support@mw-immigration.com" style="color: #0066cc;">support@mw-immigration.com</a>.
+                            If you have any questions, feel free to reach out to us at <a href="mailto:uzairyusufi5@gmail.com" style="color: #0066cc;">uzairyusufi5@gmail.com</a>.
                         </p>
                         <p style="text-align: center; font-size: 16px;">
                             Best regards,<br>
-                            <strong>The MW Immigration Team</strong>
+                            <strong>The Legend Sleep Team</strong>
                         </p>
                     </div>
                 </div>`;
@@ -101,7 +102,7 @@ router.post('/give/access', async (req, res, next) => {
                 sendEmail({
                     from: process.env.MAIL_USER,
                     to: user.email,
-                    subject: 'Set Your Password - MW Immigration Portal',
+                    subject: 'Set Your Password - Legend Sleep Portal',
                     html: emailHtml
                 }).catch(error => {
                     // Log the error without affecting the response

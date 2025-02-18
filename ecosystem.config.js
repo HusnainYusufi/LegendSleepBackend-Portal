@@ -1,6 +1,6 @@
 module.exports = {
     apps: [{
-      name: 'MW-Immigration',
+      name: 'Legend-Sleep-Integration',
       script: 'app.js',
       instances: 1,
       autorestart: true,

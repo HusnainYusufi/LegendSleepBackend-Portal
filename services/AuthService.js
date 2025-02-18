@@ -25,11 +25,13 @@ class AuthService {
            
             const user = verifyUser.result;
 
+            console.log(user);
             const isPasswordMatched = await bcrypt.compare(password, user.password);
             if (!isPasswordMatched) {
                 return { status: 401, message: 'Invalid email or password.' };
             }
             const jwtToken = await createToken({ user });
+        
         
             if (jwtToken) {
                 result = { status: 200, message: "Record Found", result: { jwtToken, userType : user.RoleId.name , username : user.username } };

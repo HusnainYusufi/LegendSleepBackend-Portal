@@ -1,7 +1,7 @@
 {
-  "name": "mw-immigration",
+  "name": "legend-sleep-ticketing",
   "version": "1.0.0",
-  "description": "This is mw-immigration backend",
+  "description": "This is the legend sleep backend portal",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

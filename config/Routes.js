@@ -6,6 +6,7 @@ const routes = (app) => {
     app.use('/role', require('../controllers/RoleController'));
     app.use('/user', require('../controllers/UserController'));
     app.use('/leadsassign' , require('../controllers/LeadAssignmentController'));
+    app.use('/ticket' , require('../controllers/TicketController'));
 };
 
 module.exports = {

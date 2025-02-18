@@ -35,7 +35,7 @@ class Base {
                 { url: "/role/all", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/user/add/password", methods: ['GET', 'PUT', 'POST'] },
                 { url: new RegExp('^/getFiles/.*'), methods: ['GET', 'PUT', 'POST'] },
-                { url : "/sharedServices/addSharedService" , methods : ['GET' , 'PUT' , 'POST']}
+                { url : "/ticket/user/add" , methods : ['GET' , 'PUT' , 'POST']}
             ]
         }));
 
