@@ -69,7 +69,7 @@ router.post('/give/access', async (req, res, next) => {
                 const user = response.result; // Vendor created
 
                 // Generate the reset link with the user's email
-                const resetLink = `http://localhost/LegendSleep-Ticketing/setPassword.php?email=${encodeURIComponent(user.email)}`;
+                const resetLink = `https://legend.automatefuel.com/setPassword.php?email=${encodeURIComponent(user.email)}`;
 
                 // Generate the HTML email content
                 const emailHtml = `
