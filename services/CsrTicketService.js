@@ -100,6 +100,42 @@ class CsrTicketService {
       };
     }
   }
+
+  // Mark ticket as attended and update fields
+  static async attendTicket(ticketId, userId, ticketData) {
+    try {
+      // Find the ticket
+      const ticket = await CsrTicket.findById(ticketId);
+      if (!ticket) {
+        return { status: 404, message: "Ticket not found." };
+      }
+
+      if (ticket.attendedStatus === "attended") {
+        return { status: 400, message: "Ticket is already attended." };
+      }
+
+      // Update fields
+      ticket.attendedStatus = "attended";
+      ticket.attendedBy = userId;
+      ticket.newProduct = ticketData.newProduct || null;
+      ticket.attemptDate = ticketData.attemptDate || null;
+      ticket.qty = ticketData.qty || null;
+      ticket.pkgs = ticketData.pkgs || null;
+      ticket.shippingCompany = ticketData.shippingCompany || null;
+      ticket.trackingNo = ticketData.trackingNo || null;
+      ticket.driver = ticketData.driver || null;
+      ticket.date = ticketData.date || null;
+      ticket.ticketStatus = ticketData.ticketStatus || null;
+      ticket.notes = ticketData.notes || null;
+
+      await ticket.save();
+
+      return { status: 200, message: "Ticket marked as attended.", ticket };
+    } catch (error) {
+      console.error("Error in CsrTicketService.attendTicket:", error);
+      return { status: 500, message: "Internal server error." };
+    }
+  }
 }
 
 module.exports = CsrTicketService;

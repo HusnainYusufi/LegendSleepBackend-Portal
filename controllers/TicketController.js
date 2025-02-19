@@ -179,6 +179,40 @@ router.post('/csr/generateFromUser/:userTicketId', async (req, res, next) => {
       next(error);
     }
   });
+
+// Route to mark a CSR ticket as attended and update additional fields
+router.post("/csr/attend/:ticketId", async (req, res, next) => {
+  try {
+    // Extract token
+    const token = req.headers["authorization"]?.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: "Authentication token missing." });
+    }
+
+    // Verify token
+    const verifiedToken = await verifyToken(token);
+    const userId = verifiedToken.data.user;
+    if (!userId) {
+      return res.status(401).json({ message: "Invalid token." });
+    }
+
+    const ticketId = req.params.ticketId;
+    const ticketData = req.body;
+
+    // Call service to update ticket
+    const result = await CsrTicketService.attendTicket(ticketId, userId, ticketData);
+    return res.status(result.status).json(result);
+  } catch (error) {
+    logger.error("Error in TicketController - /csr/attend:", {
+      message: error.message,
+      stack: error.stack,
+      ticketId: req.params.ticketId,
+      ipAddress: req.ip || req.connection.remoteAddress,
+    });
+    next(error);
+  }
+});
+
   
 
 module.exports = router;

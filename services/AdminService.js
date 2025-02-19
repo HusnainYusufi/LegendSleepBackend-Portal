@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt');
 const logger = require('../modules/logger');
 const ForgotPassword = require('./ForgotPassword');
 const RoleService = require('../services/RoleService');
+const Company = require('../models/Company.Model');
+const Driver = require('../models/Driver.Model');
 
 'use-strict';
 
@@ -110,6 +112,80 @@ static async getAllUsers() {
                 message: error.message,
                 stack: error.stack,
                 data: reqObj
+            });
+            throw error;
+        }
+    }
+
+    static async addComapny(data) {
+        try {
+            const { name } = data;
+
+            if (!name) {
+                return { status: 400, message: 'Company Name is required' };
+            }
+
+            const role = new Company({ name });
+            const savedRole = await role.save();
+
+            return { status: 201, message: 'Company added successfully', data: savedRole };
+        } catch (error) {
+            logger.error('Error in Admin serive - Add Company:', {
+                message: error.message,
+                stack: error.stack,
+                data
+            });
+            throw error;
+        }
+    }
+
+    static async addDriver(data) {
+        try {
+            const { name } = data;
+
+            if (!name) {
+                return { status: 400, message: 'Driver Name is required' };
+            }
+
+            const role = new Driver({ name });
+            const savedRole = await role.save();
+
+            return { status: 201, message: 'Driver added successfully', data: savedRole };
+        } catch (error) {
+            logger.error('Error in Admin serive - Add Driver:', {
+                message: error.message,
+                stack: error.stack,
+                data
+            });
+            throw error;
+        }
+    }
+
+    
+    static async getAllCompanies() {
+        try {
+            const roles = await Company.find({}).exec();
+
+            return { status: 200, message: 'Comapanies fetched successfully', data: roles };
+        } catch (error) {
+            logger.error('Error in AdminService - Get All Companies:', {
+                message: error.message,
+                stack: error.stack
+            });
+            throw error;
+        }
+    }
+
+     
+    static async getAllDrivers() {
+        try {
+            const roles = await Driver.find({}).exec();
+
+            return { status: 200, message: 'Driver fetched successfully', data: roles };
+        } catch (error) {
+            logger.error('Error in AdminService - Get All Drivers:', {
+                message: error.message,
+                stack: error.stack
             });
             throw error;
         }

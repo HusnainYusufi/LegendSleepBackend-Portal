@@ -495,3 +495,55 @@ Stack Trace: ValidationError: CsrTicket validation failed: fees: Path `fees` is 
 Metadata: {"data":{"ordernumber":"ORD5678","problem":"I cannot view my order details.","employee":"67b3c11d274ae3dc3284e4dc","createdBy":"67b3c11d274ae3dc3284e4dc"}}
 ---------------------------------
 
+2025-02-19 17:17:03 [ERROR]: Error in CompanyController - /add: CompanyService is not defined
+Stack Trace: ReferenceError: CompanyService is not defined
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\AdminController.js:159:26
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+
+2025-02-19 17:18:01 [ERROR]: Error in AdminService - Add Company: Company is not defined
+Stack Trace: ReferenceError: Company is not defined
+    at AdminService.addCompany (C:\Users\husna\LegendSleepBackend-Portal\services\AdminService.js:133:31)
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\AdminController.js:147:45
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"data":{"name":"ABC"}}
+---------------------------------
+
+2025-02-19 17:18:01 [ERROR]: Error in AdminController - /company/add: Company is not defined
+Stack Trace: ReferenceError: Company is not defined
+    at AdminService.addCompany (C:\Users\husna\LegendSleepBackend-Portal\services\AdminService.js:133:31)
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\AdminController.js:147:45
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:175:3)
+Metadata: {"ipAddress":"::1"}
+---------------------------------
+
+2025-02-19 17:29:35 [ERROR]: Error in RoleController - Add Role: AdminService.addCompany is not a function
+Stack Trace: TypeError: AdminService.addCompany is not a function
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\AdminController.js:145:43
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\husna\LegendSleepBackend-Portal\node_modules\express\lib\router\index.js:47:12)
+Metadata: {"body":{"name":"ABC"}}
+---------------------------------
+

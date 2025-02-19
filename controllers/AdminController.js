@@ -140,4 +140,59 @@ router.post('/give/access', async (req, res, next) => {
 });
 
 
+router.post('/company/add',  async (req, res, next) => {
+    try {
+        const result = await AdminService.addComapny(req.body);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in RoleController - Add Role:', {
+            message: error.message,
+            stack: error.stack,
+            body: req.body
+        });
+        next(error);
+    }
+});
+
+
+router.post('/driver/add',  async (req, res, next) => {
+    try {
+        const result = await AdminService.addDriver(req.body);
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in RoleController - Add Role:', {
+            message: error.message,
+            stack: error.stack,
+            body: req.body
+        });
+        next(error);
+    }
+});
+
+
+router.get('/company/all', async (req, res, next) => {
+    try {
+        const result = await AdminService.getAllCompanies();
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in RoleController - Get All Roles:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+router.get('/driver/all', async (req, res, next) => {
+    try {
+        const result = await AdminService.getAllDrivers();
+        return res.status(result.status).json(result);
+    } catch (error) {
+        logger.error('Error in RoleController - Get All Roles:', {
+            message: error.message,
+            stack: error.stack
+        });
+        next(error);
+    }
+});
+
 module.exports = router;
