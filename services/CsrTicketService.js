@@ -39,7 +39,7 @@ class CsrTicketService {
   static async getAllTickets() {
     try {
       const tickets = await CsrTicket.find()
-        .populate("createdBy")
+        .populate("createdBy attendedBy shippingCompany driver")
         .sort({ createdAt: -1 });
       return {
         status: 200,
