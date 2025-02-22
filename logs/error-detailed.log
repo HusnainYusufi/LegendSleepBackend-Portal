@@ -547,3 +547,40 @@ Stack Trace: TypeError: AdminService.addCompany is not a function
 Metadata: {"body":{"name":"ABC"}}
 ---------------------------------
 
+2025-02-21 04:43:21 [ERROR]: Error in TicketController - /csr/add: Notification is not defined
+Stack Trace: ReferenceError: Notification is not defined
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\TicketController.js:35:26
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Metadata: {"body":{"ordernumber":"ORDER123","problem":"Product not working","fees":100,"procedure":"Repair","condition":"Under warranty","createdBy":"67b652aa87165cb13eb5c0fa"},"ipAddress":"::1"}
+---------------------------------
+
+2025-02-21 04:50:00 [ERROR]: Error in notifyCsrLeads cron job: Cannot read properties of null (reading 'username')
+Stack Trace: TypeError: Cannot read properties of null (reading 'username')
+    at Task._execution (C:\Users\husna\LegendSleepBackend-Portal\cronjobs\notifyCsrLeads.js:20:74)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------
+
+2025-02-21 04:55:00 [ERROR]: Error in notifyCsrLeads cron job: Cannot read properties of null (reading 'username')
+Stack Trace: TypeError: Cannot read properties of null (reading 'username')
+    at Task._execution (C:\Users\husna\LegendSleepBackend-Portal\cronjobs\notifyCsrLeads.js:20:74)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------
+
+2025-02-22 07:05:21 [ERROR]: Unauthorized access attempt in Ticketcontroller - /attend-csrlead:
+Metadata: {"userId":"Unknown","email":"yusufihusnain0@gmail.com","ipAddress":"::1"}
+---------------------------------
+
+2025-02-22 07:05:50 [ERROR]: Unauthorized access attempt in Ticketcontroller - /attend-csrlead:
+Metadata: {"userId":"Unknown","email":"yusufihusnain0@gmail.com","ipAddress":"::1"}
+---------------------------------
+
+2025-02-22 07:09:28 [ERROR]: Unauthorized access attempt in Ticketcontroller - /attend-csrlead:
+Metadata: {"userId":"Unknown","email":"yusufihusnain0@gmail.com","ipAddress":"::1"}
+---------------------------------
+
+2025-02-22 07:17:04 [ERROR]: Error in TicketController - /counts: Driver.countDocuments is not a function
+Stack Trace: TypeError: Driver.countDocuments is not a function
+    at C:\Users\husna\LegendSleepBackend-Portal\controllers\TicketController.js:306:39
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+---------------------------------
+

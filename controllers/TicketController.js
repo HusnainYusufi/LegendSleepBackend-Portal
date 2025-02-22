@@ -4,6 +4,7 @@ const CsrTicketService = require("../services/CsrTicketService");
 const UserTicketService = require("../services/UserTicketService");
 const { verifyToken } = require("../modules/helper"); // Import verifyToken for extracting user data
 const logger = require("../modules/logger");
+const Notification = require('../models/Notification.model');
 
 // Route to add a CSR tickets aded
 router.post("/csr/add", async (req, res, next) => {
@@ -16,8 +17,6 @@ router.post("/csr/add", async (req, res, next) => {
 
     // Verify the token and extract the user
     const verifiedToken = await verifyToken(token);
-    // Depending on your token structure, adjust accordingly.
-    // Here we assume the user object is stored in verifiedToken.data.user or userId in verifiedToken.data.
     const userId = verifiedToken.data.user;
     if (!userId) {
       return res.status(401).json({ message: "Invalid token." });
@@ -28,6 +27,24 @@ router.post("/csr/add", async (req, res, next) => {
 
     // Proceed to add the CSR ticket
     const result = await CsrTicketService.addTicket(req.body);
+
+    // Log the result of ticket creation
+    logger.info('CSR ticket creation result:', result);
+
+    // Generate a notification for CSR leads
+    const notificationMessage = `A new CSR ticket has been created: ${result.result.ordernumber}`;
+    const notification = new Notification({
+      message: notificationMessage,
+      ticketId: result.result._id,
+      createdBy: userId,
+    });
+
+    // Save the notification
+    await notification.save();
+
+    // Log the saved notification
+    logger.info('Notification created successfully:', notification);
+
     return res.status(result.status).json(result);
   } catch (error) {
     logger.error("Error in TicketController - /csr/add:", {
@@ -198,7 +215,14 @@ router.post("/csr/attend/:ticketId", async (req, res, next) => {
 
     const ticketId = req.params.ticketId;
     const ticketData = req.body;
-
+  //   if (!verifiedToken?.data?.userType || verifiedToken?.data?.userType.toLowerCase() !== 'csrlead') {
+  //     logger.error('Unauthorized access attempt in Ticketcontroller - /attend-csrlead:', {
+  //         userId: verifiedToken?.data?.userId || 'Unknown',
+  //         email: verifiedToken?.data?.email || 'Unknown',
+  //         ipAddress: req.ip || req.connection.remoteAddress
+  //     });
+  //     return res.status(403).json({ message: 'Access denied. Only CSR Lead can attend Leads.' });
+  // }
     // Call service to update ticket
     const result = await CsrTicketService.attendTicket(ticketId, userId, ticketData);
     return res.status(result.status).json(result);
@@ -208,6 +232,59 @@ router.post("/csr/attend/:ticketId", async (req, res, next) => {
       stack: error.stack,
       ticketId: req.params.ticketId,
       ipAddress: req.ip || req.connection.remoteAddress,
+    });
+    next(error);
+  }
+});
+
+// Route to get all notifications for CSR leads
+router.get("/csr/notifications", async (req, res, next) => {
+  try {
+    // Fetch all unread notifications and populate the createdBy field
+    const notifications = await Notification.find({ isRead: false })
+      .populate("ticketId") // Populate the ticketId field
+      .populate({
+        path: "createdBy", // Populate the createdBy field
+        select: "username email", // Include only specific fields from the User model
+      });
+
+    return res.status(200).json({
+      status: 200,
+      message: "Notifications fetched successfully.",
+      data: notifications,
+    });
+  } catch (error) {
+    logger.error("Error in TicketController - /csr/notifications:", {
+      message: error.message,
+      stack: error.stack,
+    });
+    next(error);
+  }
+});
+
+// Route to mark a notification as read
+router.post("/csr/notifications/mark-as-read/:notificationId", async (req, res, next) => {
+  try {
+    const { notificationId } = req.params;
+
+    // Find the notification and mark it as read
+    const notification = await Notification.findById(notificationId);
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found." });
+    }
+
+    notification.isRead = true;
+    await notification.save();
+
+    return res.status(200).json({
+      status: 200,
+      message: "Notification marked as read.",
+      data: notification,
+    });
+  } catch (error) {
+    logger.error("Error in TicketController - /csr/notifications/mark-as-read:", {
+      message: error.message,
+      stack: error.stack,
     });
     next(error);
   }

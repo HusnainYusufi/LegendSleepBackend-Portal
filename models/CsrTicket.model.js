@@ -81,7 +81,7 @@ const CsrTicketSchema = new Schema(
       type: Date,
       default: null,
     },
-    status: {
+    ticketStatus: {
       type: String,
       trim: true,
       default: null,

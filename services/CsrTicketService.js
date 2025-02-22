@@ -1,5 +1,6 @@
 const CsrTicket = require("../models/CsrTicket.model");
 const logger = require("../modules/logger");
+const Notification = require('../models/Notification.model'); 
 
 class CsrTicketService {
   /**
@@ -9,10 +10,16 @@ class CsrTicketService {
    */
   static async addTicket(ticketData) {
     try {
-      // Create a new CSR ticket (status defaults to 'pending' as defined in the model)
+      // Log the ticket data being received
+      logger.info('Creating CSR ticket with data:', ticketData);
+  
+      // Create a new CSR ticket
       const newTicket = new CsrTicket(ticketData);
       const savedTicket = await newTicket.save();
-
+  
+      // Log the saved ticket
+      logger.info('CSR ticket created successfully:', savedTicket);
+  
       return {
         status: 201,
         message: "CSR ticket created successfully.",
