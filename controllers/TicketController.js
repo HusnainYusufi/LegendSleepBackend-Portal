@@ -215,14 +215,14 @@ router.post("/csr/attend/:ticketId", async (req, res, next) => {
 
     const ticketId = req.params.ticketId;
     const ticketData = req.body;
-  //   if (!verifiedToken?.data?.userType || verifiedToken?.data?.userType.toLowerCase() !== 'csrlead') {
-  //     logger.error('Unauthorized access attempt in Ticketcontroller - /attend-csrlead:', {
-  //         userId: verifiedToken?.data?.userId || 'Unknown',
-  //         email: verifiedToken?.data?.email || 'Unknown',
-  //         ipAddress: req.ip || req.connection.remoteAddress
-  //     });
-  //     return res.status(403).json({ message: 'Access denied. Only CSR Lead can attend Leads.' });
-  // }
+    if (!verifiedToken?.data?.userType || verifiedToken?.data?.userType.toLowerCase() !== 'csrlead' || verifiedToken?.data?.userType.toLowerCase() !== 'superadmin') {
+      logger.error('Unauthorized access attempt in Ticketcontroller - /attend-csrlead:', {
+          userId: verifiedToken?.data?.userId || 'Unknown',
+          email: verifiedToken?.data?.email || 'Unknown',
+          ipAddress: req.ip || req.connection.remoteAddress
+      });
+      return res.status(403).json({ message: 'Access denied. Only CSR Lead can attend Leads.' });
+  }
     // Call service to update ticket
     const result = await CsrTicketService.attendTicket(ticketId, userId, ticketData);
     return res.status(result.status).json(result);
