@@ -5,6 +5,10 @@ const UserTicketService = require("../services/UserTicketService");
 const { verifyToken } = require("../modules/helper"); // Import verifyToken for extracting user data
 const logger = require("../modules/logger");
 const Notification = require('../models/Notification.model');
+const UserTicket = require('../models/UserTicket.model');
+const CsrTicket = require('../models/CsrTicket.model');
+const Company = require('../models/Company.Model');
+const Driver = require('../models/Driver.Model');
 
 // Route to add a CSR tickets aded
 router.post("/csr/add", async (req, res, next) => {
@@ -305,6 +309,41 @@ router.post("/csr/notifications/mark-as-read/:notificationId", async (req, res, 
   }
 });
 
+router.get("/stats/counts", async (req, res) => {
+  try {
+    const [
+      totalUserTickets,
+      totalCsrTickets,
+      attendedTickets,
+      unattendedTickets,
+      totalCompanies,
+      totalDrivers,
+      unreadNotifications
+    ] = await Promise.all([
+      UserTicket.countDocuments(),
+      CsrTicket.countDocuments(),
+      CsrTicket.countDocuments({ attendedStatus: "attended" }),
+      CsrTicket.countDocuments({ attendedStatus: "pending" }),
+      Company.countDocuments(),
+      Driver.countDocuments(),
+      Notification.countDocuments({ isRead: false }),
+    ]);
+
+    return res.json({
+      totalTickets: totalUserTickets + totalCsrTickets,
+      totalUserTickets,
+      totalCsrTickets,
+      totalAttendedTickets: attendedTickets,
+      totalUnattendedTickets: unattendedTickets,
+      totalCompanies,
+      totalDrivers,
+      totalUnreadNotifications: unreadNotifications,
+    });
+  } catch (error) {
+    console.error("Error fetching counts:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
   
 
 module.exports = router;
