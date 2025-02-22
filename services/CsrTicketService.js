@@ -134,6 +134,7 @@ class CsrTicketService {
       ticket.date = ticketData.date || null;
       ticket.ticketStatus = ticketData.ticketStatus || null;
       ticket.notes = ticketData.notes || null;
+      ticket.status = "completed"
 
       await ticket.save();
 

@@ -177,9 +177,24 @@ router.post('/csr/generateFromUser/:userTicketId', async (req, res, next) => {
       if (csrTicketResult.status !== 201) {
         return res.status(csrTicketResult.status).json(csrTicketResult);
       }
+      // Generate a notification for CSR leads
+      const notificationMessage = `A new CSR ticket has been generated from a user ticket: ${csrTicketResult.result.ordernumber}`;
+      const notification = new Notification({
+          message: notificationMessage,
+          ticketId: csrTicketResult.result._id,
+          createdBy: userId,
+      });
+
+      // Save the notification
+      await notification.save();
+
+      // Log the saved notification
+      logger.info('Notification created successfully:', notification);
+
       
       // Delete the original user ticket after successful CSR ticket creation
       await UserTicket.findByIdAndDelete(userTicketId);
+      
       
       return res.status(201).json({
         status: 201,
