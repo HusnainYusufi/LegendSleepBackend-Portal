@@ -16,6 +16,9 @@ const CsrTicketSchema = new Schema(
     fees: {
       type: Number,
     },
+    city : {
+      type : String
+    },
     procedure: {
       type: String,
       trim: true,

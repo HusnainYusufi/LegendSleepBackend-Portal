@@ -162,7 +162,7 @@ router.post('/csr/generateFromUser/:userTicketId', async (req, res, next) => {
       
       // Get additional CSR ticket fields from the request body
       // Expecting fees, procedure, and condition; employee is optional.
-      const { fees, procedure, condition, employee } = req.body;
+      const { fees, procedure, condition, employee , city } = req.body;
       
       // Prepare the CSR ticket data object
       const csrTicketData = {
@@ -171,6 +171,7 @@ router.post('/csr/generateFromUser/:userTicketId', async (req, res, next) => {
         fees,
         procedure,
         condition,
+        city,
         // Use employee from payload if provided, otherwise fallback (e.g., to userId)
         employee: employee || userId,
         createdBy: userId // This is taken from the token
