@@ -144,6 +144,54 @@ class CsrTicketService {
       return { status: 500, message: "Internal server error." };
     }
   }
+  /**
+ * Updates the ticketStatus of a CSR ticket.
+ * @param {String} ticketId - The ID of the ticket to update.
+ * @param {String} ticketStatus - The new status to set for the ticket.
+ * @returns {Object} - Response with status, message, and updated ticket.
+ */
+static async updateTicketStatus(ticketId, ticketStatus) {
+  try {
+      // Validate the ticketStatus input
+      if (!ticketStatus || typeof ticketStatus !== 'string') {
+          return { status: 400, message: 'Invalid ticketStatus provided.' };
+      }
+
+      // Find the ticket by ID
+      const ticket = await CsrTicket.findById(ticketId);
+      if (!ticket) {
+          return { status: 404, message: 'Ticket not found.' };
+      }
+
+      // Update the ticketStatus field
+      ticket.ticketStatus = ticketStatus;
+      const updatedTicket = await ticket.save();
+
+      // Log the update
+      logger.info(`Ticket status updated for ticket ID: ${ticketId}`, {
+          oldStatus: ticket.ticketStatus,
+          newStatus: updatedTicket.ticketStatus,
+      });
+
+      return {
+          status: 200,
+          message: 'Ticket status updated successfully.',
+          result: updatedTicket,
+      };
+  } catch (error) {
+      logger.error('Error in CsrTicketService - updateTicketStatus:', {
+          message: error.message,
+          stack: error.stack,
+          ticketId,
+          ticketStatus,
+      });
+      return {
+          status: 500,
+          message: 'Failed to update ticket status.',
+          error: error.message,
+      };
+  }
+}
 }
 
 module.exports = CsrTicketService;

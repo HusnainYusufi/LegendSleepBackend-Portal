@@ -345,6 +345,36 @@ router.get("/stats/counts", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.post('/csr/update-ticket-status/:ticketId', async (req, res, next) => {
+  try {
+      // Extract the ticket ID from the route parameter
+      const ticketId = req.params.ticketId;
+
+      // Extract the new status from the request body
+      const { ticketStatus } = req.body;
+
+      // Validate the input
+      if (!ticketStatus || typeof ticketStatus !== 'string') {
+          return res.status(400).json({ message: 'Invalid ticketStatus provided.' });
+      }
+
+      // Call the service to update the ticket status
+      const result = await CsrTicketService.updateTicketStatus(ticketId, ticketStatus);
+
+      // Return the response
+      return res.status(result.status).json(result);
+  } catch (error) {
+      logger.error('Error in TicketController - /csr/update-ticket-status:', {
+          message: error.message,
+          stack: error.stack,
+          ticketId: req.params.ticketId,
+          body: req.body,
+          ipAddress: req.ip || req.connection.remoteAddress,
+      });
+      next(error);
+  }
+});
   
 
 module.exports = router;
