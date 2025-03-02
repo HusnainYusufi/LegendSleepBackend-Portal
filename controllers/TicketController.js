@@ -358,6 +358,27 @@ router.post('/csr/update-ticket-status/:ticketId', async (req, res, next) => {
       if (!ticketStatus || typeof ticketStatus !== 'string') {
           return res.status(400).json({ message: 'Invalid ticketStatus provided.' });
       }
+      const token = req.headers["authorization"]?.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: "Authentication token missing." });
+    }
+
+    // Verify token
+    const verifiedToken = await verifyToken(token);
+    const userId = verifiedToken.data.user;
+    if (!userId) {
+      return res.status(401).json({ message: "Invalid token." });
+    }
+
+    const ticketData = req.body;
+    if (!verifiedToken?.data?.userType || verifiedToken?.data?.userType.toLowerCase() !== 'csrlead') {
+      logger.error('Unauthorized access attempt in Ticketcontroller - /attend-csrlead:', {
+          userId: verifiedToken?.data?.userId || 'Unknown',
+          email: verifiedToken?.data?.email || 'Unknown',
+          ipAddress: req.ip || req.connection.remoteAddress
+      });
+      return res.status(403).json({ message: 'Access denied. Only CSR Lead can attend Leads.' });
+  }
 
       // Call the service to update the ticket status
       const result = await CsrTicketService.updateTicketStatus(ticketId, ticketStatus);
