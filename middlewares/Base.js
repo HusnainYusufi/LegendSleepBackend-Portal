@@ -34,7 +34,7 @@ class Base {
                 { url: "/role/add", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/role/all", methods: ['GET', 'PUT', 'POST'] },
                 { url: "/user/add/password", methods: ['GET', 'PUT', 'POST'] },
-                { url: new RegExp('^/getFiles/.*'), methods: ['GET', 'PUT', 'POST'] },
+                { url: new RegExp('^/files/.*'), methods: ['GET', 'PUT', 'POST'] },
                 { url : "/ticket/user/add" , methods : ['GET' , 'PUT' , 'POST']}
             ]
         }));

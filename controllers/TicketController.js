@@ -9,17 +9,17 @@ const UserTicket = require('../models/UserTicket.model');
 const CsrTicket = require('../models/CsrTicket.model');
 const Company = require('../models/Company.Model');
 const Driver = require('../models/Driver.Model');
+const upload = require('../services/multerService'); 
 
 // Route to add a CSR tickets aded
-router.post("/csr/add", async (req, res, next) => {
+// Route to add a CSR ticket with image upload support
+router.post("/csr/add", upload.array('images', 10), async (req, res, next) => {
   try {
-    // Extract the token from the Authorization header
     const token = req.headers["authorization"]?.split(" ")[1];
     if (!token) {
       return res.status(401).json({ message: "Authentication token missing." });
     }
-
-    // Verify the token and extract the user
+    
     const verifiedToken = await verifyToken(token);
     const userId = verifiedToken.data.user;
     if (!userId) {
@@ -28,11 +28,17 @@ router.post("/csr/add", async (req, res, next) => {
 
     // Add the user ID to the createdBy field in the ticket data
     req.body.createdBy = userId;
+    req.body.reason = req.body.reason || null; // Optional field for reason
 
-    // Proceed to add the CSR ticket
+    // Handle uploaded images: if files are provided, map them to their stored paths
+    if (req.files && req.files.length > 0) {
+      req.body.images = req.files.map(file => file.path);
+    } else {
+      req.body.images = null;
+    }
+
+    // Create the CSR ticket using the service
     const result = await CsrTicketService.addTicket(req.body);
-
-    // Log the result of ticket creation
     logger.info('CSR ticket creation result:', result);
 
     // Generate a notification for CSR leads
@@ -43,10 +49,7 @@ router.post("/csr/add", async (req, res, next) => {
       createdBy: userId,
     });
 
-    // Save the notification
     await notification.save();
-
-    // Log the saved notification
     logger.info('Notification created successfully:', notification);
 
     return res.status(result.status).json(result);
@@ -60,6 +63,7 @@ router.post("/csr/add", async (req, res, next) => {
     next(error);
   }
 });
+
 
 // Route to add a User ticket (no authentication required)
 router.post("/user/add", async (req, res, next) => {

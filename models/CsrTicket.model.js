@@ -94,6 +94,17 @@ const CsrTicketSchema = new Schema(
       trim: true,
       default: null,
     },
+     // New field: reason (optional)
+     reason: {
+      type: String,
+      trim: true,
+      default: null,
+    },
+    // New field: images (optional array of strings)
+    images: {
+      type: [String],
+      default: null,
+    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt fields
